@@ -1,5 +1,11 @@
 import React from 'react';
+import { GoHome } from './GoHome';
 
 export function NotFoundPage() {
-  return <p className="text-center">404</p>;
+  return (
+    <div>
+      <GoHome />
+      <p className="text-center">404</p>
+    </div>
+  );
 }

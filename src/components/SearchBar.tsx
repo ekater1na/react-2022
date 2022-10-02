@@ -3,7 +3,7 @@ import React from 'react';
 export function SearchBar() {
   return (
     <div className="bg-gray-100 flex flex-col justify-center">
-      <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
+      <div className="relative p-4 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-3">
           <form role="form" className="relative flex z-50 bg-white rounded-full">
             <input
