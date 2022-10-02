@@ -12,7 +12,7 @@ export default class SearchBar extends Component {
   }
 
   componentWillUnmount() {
-    localStorage.setItem('Search', this.state.searchValue);
+    localStorage.setItem('Search', this.state.searchValue ? this.state.searchValue : '');
   }
 
   onFormSubmit(e: FormEvent) {
