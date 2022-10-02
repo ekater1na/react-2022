@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="container mx-auto max-w-8xl pt-5">
+    <div className="container mx-auto max-w-8xl">
       <SearchBar />
 
       <nav

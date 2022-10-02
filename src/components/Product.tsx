@@ -38,7 +38,12 @@ export function Product({ product }: ProductProps) {
         <p className="font-bold">{product.price}</p>
       </div>
 
-      <button className="bg-blue-400 py-2 px-4 border">Show details</button>
+      <a
+        href="/404"
+        className="px-6 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
+      >
+        Show details
+      </a>
     </div>
   );
 }
