@@ -10,7 +10,7 @@ import { AboutUs } from './pages/AboutUs';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   // <React.StrictMode>
-  <BrowserRouter>
+  <BrowserRouter basename="/ekater1na-REACT2022Q3">
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="about" element={<AboutUs />} />

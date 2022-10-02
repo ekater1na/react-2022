@@ -1,5 +1,6 @@
 import React from 'react';
 import { IProduct } from '../models';
+import { Link } from 'react-router-dom';
 
 interface ProductProps {
   product: IProduct;
@@ -14,12 +15,12 @@ export function ProductItem({ product }: ProductProps) {
         <p className="text-center">{product.title}</p>
         <p className="font-bold">{product.price}</p>
       </div>
-      <a
-        href="/404"
+      <Link
+        to="/404"
         className="px-6 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
       >
         Show details
-      </a>
+      </Link>
     </div>
   );
 }
