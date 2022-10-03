@@ -5,6 +5,7 @@ export function Header() {
   return (
     <nav className="relative flex flex-wrap items-center justify-center px-2 py-3 bg-blue-400">
       <NavLink
+        data-testid="home"
         className="px-4 text-2xl text-red-500"
         to="/"
         // style={({ isActive }) => ({ color: isActive ? 'white' : 'blue' })}
@@ -12,6 +13,7 @@ export function Header() {
         Home
       </NavLink>
       <NavLink
+        data-testid="about"
         className="px-4 text-2xl"
         end
         to="/about"
@@ -20,6 +22,7 @@ export function Header() {
         About Us
       </NavLink>
       <NavLink
+          data-testid="404"
         className="px-4 text-2xl"
         end
         to="/404"
