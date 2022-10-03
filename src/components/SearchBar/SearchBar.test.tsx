@@ -35,15 +35,24 @@ describe('LocalStorage', () => {
     });
   });
 
-  it('Set and get localStorage data', () => {
+  it('set localStorage data', () => {
+    const { unmount } = render(<SearchBar />);
+    const input = screen.getByPlaceholderText(/enter/i);
+
+    localStorageMock.setItem('Search', 'LS Item');
+    unmount();
+    expect(input).toBeTruthy();
+  });
+
+  it('get localStorage data', () => {
     const { unmount } = render(<SearchBar />);
     const input = screen.getByPlaceholderText(/enter/i);
 
     fireEvent.input(input, {
       target: { value: 'LS Item' },
     });
-    expect(input).toContainHTML('LS Item');
     localStorageMock.setItem('Search', 'LS Item');
     unmount();
+    expect(input).toContainHTML('LS Item');
   });
 });

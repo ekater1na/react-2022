@@ -20,12 +20,21 @@ const mockProduct = [
 ];
 
 describe('ProductItem component', () => {
-  test('renders card', () => {
+  test('renders cards', () => {
     render(
       // @ts-ignore
       <ProductItem product={mockProduct} />
     );
-    const button = screen.getByText<HTMLInputElement>(/Show details/i);
-    expect(button).toHaveClass('text-sm');
+    const button = screen.getAllByRole<HTMLInputElement>('img');
+    expect(button).toHaveLength(1);
+  });
+
+  test('renders card with images', () => {
+    render(
+        // @ts-ignore
+        <ProductItem product={mockProduct} />
+    );
+    const button = screen.getByRole<HTMLInputElement>('img');
+    expect(button).toBeInTheDocument();
   });
 });
