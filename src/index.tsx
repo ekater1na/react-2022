@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { AboutUs } from './pages/AboutUs';
-import { Header } from './components/Header';
-import Location from './components/Location';
+import { Header } from './components/Header/Header';
+import Location from './components/Location/Location';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

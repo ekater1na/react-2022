@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProduct } from '../models';
+import { IProduct } from '../../models';
 import { Link } from 'react-router-dom';
 
 interface ProductProps {
@@ -9,8 +9,8 @@ interface ProductProps {
 export function ProductItem({ product }: ProductProps) {
   return (
     <div className="container mx-auto">
-      <div className="border my-4 py-1 px-6 rounded flex flex-col items-center mb-2 h-72">
-        <div className="h-2/3 flex justify-center">
+      <div className="border my-4 py-1 px-6 rounded flex flex-col items-center mb-2 h-52">
+        <div className="h-1/2 flex justify-center">
           <img src={product.image} alt={product.title} className=" rounded-t-s" />
         </div>
         <div className="w-full">

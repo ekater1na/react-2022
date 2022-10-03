@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchBar from '../components/SearchBar';
-import { ProductList } from 'components/ProductList';
+import SearchBar from '../components/SearchBar/SearchBar';
+import { ProductList } from 'components/ProductList/ProductList';
 
 export function HomePage() {
   return (

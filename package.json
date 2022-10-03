@@ -27,6 +27,7 @@
     "lint:fix": "eslint --fix",
     "format": "npx prettier --write .",
     "test": "react-scripts test",
+    "test-cov": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
