@@ -12,8 +12,8 @@ import Location from './components/Location';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <BrowserRouter basename="/ekater1na-REACT2022Q3">
-    <Header />
     <Location />
+    <Header />
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="about" element={<AboutUs />} />

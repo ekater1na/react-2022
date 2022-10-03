@@ -9,15 +9,19 @@ interface ProductProps {
 export function ProductItem({ product }: ProductProps) {
   return (
     <div className="container mx-auto">
-      <div className="border my-4 py-2 px-4 rounded flex flex-col items-center mb-2 h-64">
-        <img src={product.image} alt={product.title} className=" max-h-36  rounded-t-s" />
-
-        <p className="text-center">{product.title}</p>
-        <p className="font-bold">{product.price}</p>
+      <div className="border my-4 py-1 px-6 rounded flex flex-col items-center mb-2 h-72">
+        <div className="h-2/3 flex justify-center">
+          <img src={product.image} alt={product.title} className=" rounded-t-s" />
+        </div>
+        <div className="w-full">
+          <p className="text-center truncate text-red-500 text-2xl font-bold">{product.title}</p>
+        </div>
+        <p className="text-gray-400">{product.category}</p>
+        <p className="font-bold text-xl">{product.price}$</p>
       </div>
       <Link
         to="/404"
-        className="px-6 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
+        className="px-6 py-2 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
       >
         Show details
       </Link>
