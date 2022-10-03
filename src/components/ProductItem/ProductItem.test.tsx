@@ -31,8 +31,8 @@ describe('ProductItem component', () => {
 
   test('renders card with images', () => {
     render(
-        // @ts-ignore
-        <ProductItem product={mockProduct} />
+      // @ts-ignore
+      <ProductItem product={mockProduct} />
     );
     const button = screen.getByRole<HTMLInputElement>('img');
     expect(button).toBeInTheDocument();
