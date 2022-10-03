@@ -4,14 +4,14 @@ import SearchBar from './SearchBar';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 describe('SearchBar component', () => {
-  it('Focus input', () => {
+  it('focus input', () => {
     render(<SearchBar />);
     const input = screen.getByPlaceholderText(/enter/i);
     expect(input).not.toHaveFocus();
     input.focus();
     expect(input).toHaveFocus();
   });
-  it('Input content', () => {
+  it('input content', () => {
     render(<SearchBar />);
     const input = screen.getByPlaceholderText<HTMLInputElement>(/enter/i);
     expect(input).toContainHTML('');

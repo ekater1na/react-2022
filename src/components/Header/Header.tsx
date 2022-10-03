@@ -4,12 +4,7 @@ import { NavLink } from 'react-router-dom';
 export function Header() {
   return (
     <nav className="relative flex flex-wrap items-center justify-center px-2 py-3 bg-blue-400">
-      <NavLink
-        data-testid="home"
-        className="px-4 text-2xl text-red-500"
-        to="/"
-        // style={({ isActive }) => ({ color: isActive ? 'white' : 'blue' })}
-      >
+      <NavLink data-testid="home" className="px-4 text-2xl text-red-500" to="/">
         Home
       </NavLink>
       <NavLink
