@@ -6,18 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { AboutUs } from './pages/AboutUs';
+import { Header } from './components/Header';
+import Location from './components/Location';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  // <React.StrictMode>
   <BrowserRouter basename="/ekater1na-REACT2022Q3">
+    <Header />
+    <Location />
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="about" element={<AboutUs />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </BrowserRouter>
-  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

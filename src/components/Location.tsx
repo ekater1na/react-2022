@@ -6,9 +6,10 @@ const Location = () => {
   const pageTitle = location.pathname;
 
   return (
-    <p className="bg-blue-100">
-      <b>Location:</b> {pageTitle === '/' ? 'Main' : pageTitle.replace(/\//g, '')} Page
-    </p>
+    <div className="flex justify-end  px-2 py-0">
+      <b className="px-2">Location: </b> {pageTitle === '/' ? 'Main' : pageTitle.replace(/\//g, '')}{' '}
+      Page
+    </div>
   );
 };
 

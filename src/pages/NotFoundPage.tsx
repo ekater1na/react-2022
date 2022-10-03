@@ -1,19 +1,15 @@
 import React from 'react';
-import { GoHome } from '../components/GoHome';
-import Location from '../components/Location';
 
 export function NotFoundPage() {
   return (
     <div>
-      <Location />
-
       <div
         className="
     flex
     items-center
     justify-center
     w-screen
-    h-screen
+    h-[calc(100vh-80px)]
     bg-gradient-to-r
     from-indigo-600
     to-blue-400
@@ -30,8 +26,6 @@ export function NotFoundPage() {
             <p className="mb-8 text-center text-gray-500 md:text-lg">
               The page you’re looking for doesn’t exist.
             </p>
-
-            <GoHome />
           </div>
         </div>
       </div>

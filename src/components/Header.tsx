@@ -1,0 +1,32 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+export function Header() {
+  return (
+    <nav className="relative flex flex-wrap items-center justify-center px-2 py-3 bg-blue-400">
+      <NavLink
+        className="px-4 text-2xl text-red-500"
+        to="/"
+        // style={({ isActive }) => ({ color: isActive ? 'white' : 'blue' })}
+      >
+        Home
+      </NavLink>
+      <NavLink
+        className="px-4 text-2xl"
+        end
+        to="/about"
+        style={({ isActive }) => ({ color: isActive ? 'white' : 'blue' })}
+      >
+        About Us
+      </NavLink>
+      <NavLink
+        className="px-4 text-2xl"
+        end
+        to="/404"
+        style={({ isActive }) => ({ color: isActive ? 'white' : 'blue' })}
+      >
+        404
+      </NavLink>
+    </nav>
+  );
+}
