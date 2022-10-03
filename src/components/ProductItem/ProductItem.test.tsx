@@ -25,8 +25,8 @@ describe('ProductItem component', () => {
       // @ts-ignore
       <ProductItem product={mockProduct} />
     );
-    const button = screen.getAllByRole<HTMLInputElement>('img');
-    expect(button).toHaveLength(1);
+    const elem = screen.getAllByRole<HTMLInputElement>('img');
+    expect(elem).toHaveLength(1);
   });
 
   test('renders card with images', () => {
@@ -34,7 +34,7 @@ describe('ProductItem component', () => {
       // @ts-ignore
       <ProductItem product={mockProduct} />
     );
-    const button = screen.getByRole<HTMLInputElement>('img');
-    expect(button).toBeInTheDocument();
+    const elem = screen.getByRole<HTMLInputElement>('img');
+    expect(elem).toBeInTheDocument();
   });
 });

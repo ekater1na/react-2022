@@ -13,7 +13,7 @@ describe('Header component', () => {
         </Routes>
       </BrowserRouter>
     );
-    const images = screen.getByRole<HTMLInputElement>(/nav/i);
-    expect(images).toBeInTheDocument();
+    const elem = screen.getByRole<HTMLInputElement>(/nav/i);
+    expect(elem).toBeInTheDocument();
   });
 });

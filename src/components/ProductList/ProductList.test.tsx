@@ -4,9 +4,9 @@ import { ProductList } from './ProductList';
 import { render, screen } from '@testing-library/react';
 
 describe('ProductList component', () => {
-  test('renders div', () => {
+  test('renders cards', () => {
     render(<ProductList />);
-    const images = screen.getByAltText<HTMLInputElement>(/Acer/i);
-    expect(images).toHaveClass('rounded-t-s');
+    const elem = screen.getAllByAltText<HTMLElement>(/samsung/i);
+    expect(elem).toBeTruthy();
   });
 });

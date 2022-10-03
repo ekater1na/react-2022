@@ -13,7 +13,7 @@ describe('Location component', () => {
         </Routes>
       </BrowserRouter>
     );
-    const images = screen.getByText<HTMLInputElement>(/Location/i);
-    expect(images).toBeInTheDocument();
+    const elem = screen.getByText<HTMLInputElement>(/Location/i);
+    expect(elem).toBeInTheDocument();
   });
 });
