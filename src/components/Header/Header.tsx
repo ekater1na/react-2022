@@ -22,7 +22,7 @@ export function Header() {
         About Us
       </NavLink>
       <NavLink
-          data-testid="404"
+        data-testid="404"
         className="px-4 text-2xl"
         end
         to="/404"

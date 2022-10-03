@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { Header } from './components/Header/Header';
 
 describe('Router', () => {
-  test('Pages', () => {
+  test('pages', () => {
     render(
       <BrowserRouter>
         <Header />
