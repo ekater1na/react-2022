@@ -17,6 +17,15 @@ export function Header() {
         About Us
       </NavLink>
       <NavLink
+        data-testid="about"
+        className="px-4 text-2xl"
+        end
+        to="/forms"
+        style={({ isActive }) => ({ color: isActive ? 'white' : 'blue' })}
+      >
+        Forms
+      </NavLink>
+      <NavLink
         data-testid="404"
         className="px-4 text-2xl"
         end
