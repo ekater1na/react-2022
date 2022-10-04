@@ -18,9 +18,7 @@ export function ProductItem({ product }: ProductProps) {
         <p className="text-gray-400">{product.category}</p>
         <p className="font-bold text-xl">{product.price}$</p>
       </div>
-      <a
-        className="px-6 py-2 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
-      >
+      <a className="px-6 py-2 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none">
         Show details
       </a>
     </div>
