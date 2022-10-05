@@ -2,7 +2,7 @@
 
 Private repository for @ekater1na
 
-[Task 1 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module01)
+[Task 2 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module02)
 
 [Deploy](https://rolling-scopes-school.github.io/ekater1na-REACT2022Q3)
 
