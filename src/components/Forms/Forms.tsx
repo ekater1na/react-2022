@@ -3,6 +3,7 @@ import { Component } from 'react';
 
 export default class Forms extends Component {
   input: React.LegacyRef<HTMLInputElement> | undefined;
+
   constructor(props: Record<string, never>) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,21 +35,37 @@ export default class Forms extends Component {
               />
               {/*<p className="text-red-500 text-xs italic">Please fill out this field.</p>*/}
             </div>
-            <div className="w-full md:w-1/2 px-3">
+
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-last-name"
+                htmlFor="grid-state"
               >
-                Price
+                Category
               </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-last-name"
-                type="text"
-                placeholder="20.99$"
-              />
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                >
+                  <option>men&apos;s clothing</option>
+                  <option>jewelery</option>
+                  <option>electronics</option>
+                  <option>women&apos;s clothing</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
+
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
               <label
@@ -69,7 +86,39 @@ export default class Forms extends Component {
             </div>
           </div>
 
-          <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Upload image
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-password"
+                type="text"
+                placeholder="Please choose an image"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/3 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-last-name"
+              >
+                Price
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-last-name"
+                type="text"
+                placeholder="20.99$"
+              />
+            </div>
+
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -99,35 +148,88 @@ export default class Forms extends Component {
                 placeholder="100"
               />
             </div>
+          </div>
+
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/3 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-last-name"
+              >
+                Date of delivery
+              </label>
+              <div
+                className="datepicker relative form-floating mb-3 xl:w-96"
+                data-mdb-toggle-button="false"
+              >
+                <input
+                  type="text"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-black focus:outline-none"
+                  placeholder="Select a date"
+                />
+                <label htmlFor="floatingInput" className="text-gray-700">
+                  Select a date
+                </label>
+                <button className="datepicker-toggle-button" data-mdb-toggle="datepicker">
+                  <i className="fas fa-calendar datepicker-toggle-icon"></i>
+                </button>
+              </div>
+            </div>
+
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-state"
+                htmlFor="grid-city"
               >
-                Category
+                Sale
               </label>
-              <div className="relative">
-                <select
-                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                >
-                  <option>men&apos;s clothing</option>
-                  <option>jewelery</option>
-                  <option>electronics</option>
-                  <option>women&apos;s clothing</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg
-                    className="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
+              <div className="">
+                <div className="flex">
+                  <label className="inline-flex relative items-center mr-5 cursor-pointer">
+                    <input type="checkbox" className="sr-only peer" checked={true} readOnly />
+                    <div
+                      onClick={() => {}}
+                      className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-blue-400  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-400"
+                    ></div>
+                    <span className="ml-2 text-sm font-medium text-gray-900">ON</span>
+                  </label>
                 </div>
               </div>
             </div>
+
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-zip"
+              >
+                Count
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-count"
+                type="text"
+                placeholder="100"
+              />
+            </div>
           </div>
+
+          <div className="mb-4">
+            <div className="form-check">
+              <input
+                className="px-3-2 w-4 h-4 text-blue-400 bg-gray-100 rounded border-gray-300"
+                type="checkbox"
+                value=""
+                id="flexCheckIndeterminate"
+              />
+              <label
+                className="form-check-label ml-2 inline-block text-gray-800"
+                htmlFor="flexCheckIndeterminate"
+              >
+                Add notifications for customers about promo
+              </label>
+            </div>
+          </div>
+
           <button
             type="submit"
             value="Submit"
@@ -136,6 +238,10 @@ export default class Forms extends Component {
             Submit
           </button>
         </form>
+
+        {/*<div className="flex items-center justify-center">*/}
+        {/* */}
+        {/*</div>*/}
       </div>
     );
   }
