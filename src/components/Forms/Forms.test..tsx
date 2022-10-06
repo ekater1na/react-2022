@@ -13,7 +13,7 @@ describe('Forms component', () => {
                 </Routes>
             </BrowserRouter>
         );
-        const elem = screen.getByRole<HTMLInputElement>(/nav/i);
+        const elem = screen.getByRole<HTMLInputElement>(/form/i);
         expect(elem).toBeInTheDocument();
     });
 });

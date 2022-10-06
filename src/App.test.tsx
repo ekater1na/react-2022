@@ -19,6 +19,10 @@ describe('Router', () => {
     const aboutLink = screen.getByTestId('about');
     userEvent.click(aboutLink);
     expect(screen.getByTestId('about')).toBeInTheDocument();
+
+    const formsLink = screen.getByTestId('forms');
+    userEvent.click(formsLink);
+    expect(screen.getByTestId('forms')).toBeInTheDocument();
   });
 
   test('404', () => {
