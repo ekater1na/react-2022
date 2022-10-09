@@ -13,6 +13,9 @@ export const products: IProduct[] = [
       rate: 3.9,
       count: 120,
     },
+    date: new Date(),
+    sale: true,
+    notification: false,
   },
   {
     id: 2,
@@ -26,6 +29,9 @@ export const products: IProduct[] = [
       rate: 4.1,
       count: 259,
     },
+    date: new Date(),
+    sale: true,
+    notification: false,
   },
   {
     id: 3,
@@ -39,6 +45,9 @@ export const products: IProduct[] = [
       rate: 4.7,
       count: 500,
     },
+    date: new Date(),
+    sale: true,
+    notification: false,
   },
   {
     id: 4,
@@ -52,6 +61,9 @@ export const products: IProduct[] = [
       rate: 2.1,
       count: 430,
     },
+    date: new Date(),
+    sale: true,
+    notification: false,
   },
   {
     id: 5,
@@ -65,6 +77,9 @@ export const products: IProduct[] = [
       rate: 4.6,
       count: 400,
     },
+    date: new Date(),
+    sale: true,
+    notification: false,
   },
   {
     id: 6,

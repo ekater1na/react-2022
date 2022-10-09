@@ -9,4 +9,7 @@ export interface IProduct {
     count: number;
     rate: number;
   };
+  date?: Date;
+  sale?: boolean;
+  notification?: boolean;
 }

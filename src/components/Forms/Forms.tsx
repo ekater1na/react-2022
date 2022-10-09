@@ -1,19 +1,63 @@
 import React from 'react';
-import { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IProduct } from '../../models';
 
-export default class Forms extends Component {
-  input: React.LegacyRef<HTMLInputElement> | undefined;
+let productData = {
+  title: '',
+  price: '',
+  description: '',
+  image: '',
+  category: '',
+  rating: {
+    rate: 0,
+    count: 0,
+  },
+  date: '',
+  sale: '',
+  notification: '',
+};
 
-  constructor(props: Record<string, never>) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
-  }
+interface CreateProductProps {
+  onCreate: (product: IProduct) => void;
+}
 
-  handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    console.log(this.input);
+export default class Forms extends React.Component {
+  title = React.createRef<HTMLInputElement>();
+  price = React.createRef<HTMLInputElement>();
+  description = React.createRef<HTMLInputElement>();
+  image = React.createRef<HTMLInputElement>();
+  category = React.createRef<HTMLSelectElement>();
+  date = React.createRef<HTMLInputElement>();
+  sale = React.createRef<HTMLInputElement>();
+  notification = React.createRef<HTMLInputElement>();
+
+  // constructor(props: {} | unknown) {
+  //   super(props);
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  //   this.title = React.createRef();
+  // }
+
+  handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-  }
+
+    productData = {
+      title: this.title.current!.value,
+      price: this.price.current!.value,
+      description: this.description.current!.value,
+      image: this.image.current!.value,
+      category: this.category.current!.value,
+      rating: {
+        rate: 0,
+        count: 0,
+      },
+      date: this.date.current!.value,
+      sale: this.sale.current!.value,
+      notification: this.notification.current!.value,
+    };
+
+    console.log('input', productData);
+  };
+
   render() {
     return (
       <div className="container mx-auto sm:max-w-2xl my-4">
@@ -27,11 +71,11 @@ export default class Forms extends Component {
                 Title
               </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-title"
+                placeholder="Title"
                 type="text"
-                placeholder="Mens Jacket"
-                ref={this.input}
+                ref={this.title}
               />
               {/*<p className="text-red-500 text-xs italic">Please fill out this field.</p>*/}
             </div>
@@ -46,7 +90,8 @@ export default class Forms extends Component {
               <div className="relative">
                 <select
                   className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
+                  id="grid-category"
+                  ref={this.category}
                 >
                   <option>men&apos;s clothing</option>
                   <option>jewelery</option>
@@ -70,15 +115,16 @@ export default class Forms extends Component {
             <div className="w-full px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-description"
               >
                 Description
               </label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-password"
-                type="text"
+                id="grid-description"
                 placeholder="Write description"
+                type="text"
+                ref={this.description}
               />
               {/*<p className="text-gray-600 text-xs italic">*/}
               {/*  Make it as long and as crazy as you would like*/}
@@ -94,16 +140,21 @@ export default class Forms extends Component {
               >
                 Upload image
               </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-password"
-                type="text"
-                placeholder="Please choose an image"
-              />
+
+              <div className="md:w-2/3">
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-image"
+                  placeholder="Please choose an image"
+                  type="text"
+                  ref={this.image}
+                />
+                <button type="submit">Upload</button>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="flex flex-wrap -mx-3 mb-2">
             <div className="w-full md:w-1/3 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -113,63 +164,31 @@ export default class Forms extends Component {
               </label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-last-name"
-                type="text"
+                id="grid-price"
                 placeholder="20.99$"
-              />
-            </div>
-
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-city"
-              >
-                Rate
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-city"
                 type="text"
-                placeholder="3.5"
+                ref={this.price}
               />
             </div>
 
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-zip"
-              >
-                Count
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-count"
-                type="text"
-                placeholder="100"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/3 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-last-name"
+                htmlFor="grid-date"
               >
                 Date of delivery
               </label>
               <div
-                className="datepicker relative form-floating mb-3 xl:w-96"
+                className="datepicker relative form-floating mb-3"
                 data-mdb-toggle-button="false"
               >
                 <input
-                  type="text"
-                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-black focus:outline-none"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="Select a date"
+                  type="Date"
+                  ref={this.date}
                 />
-                <label htmlFor="floatingInput" className="text-gray-700">
-                  Select a date
-                </label>
+
                 <button className="datepicker-toggle-button" data-mdb-toggle="datepicker">
                   <i className="fas fa-calendar datepicker-toggle-icon"></i>
                 </button>
@@ -179,14 +198,20 @@ export default class Forms extends Component {
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-city"
+                htmlFor="grid-sale"
               >
                 Sale
               </label>
               <div className="">
                 <div className="flex">
                   <label className="inline-flex relative items-center mr-5 cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" checked={true} readOnly />
+                    <input
+                      type="checkbox"
+                      className="sr-only peer"
+                      checked={false}
+                      ref={this.sale}
+                      readOnly={true}
+                    />
                     <div
                       onClick={() => {}}
                       className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-blue-400  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-400"
@@ -196,21 +221,6 @@ export default class Forms extends Component {
                 </div>
               </div>
             </div>
-
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-zip"
-              >
-                Count
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-count"
-                type="text"
-                placeholder="100"
-              />
-            </div>
           </div>
 
           <div className="mb-4">
@@ -218,8 +228,9 @@ export default class Forms extends Component {
               <input
                 className="px-3-2 w-4 h-4 text-blue-400 bg-gray-100 rounded border-gray-300"
                 type="checkbox"
-                value=""
+                // checked={false}
                 id="flexCheckIndeterminate"
+                ref={this.notification}
               />
               <label
                 className="form-check-label ml-2 inline-block text-gray-800"
@@ -236,6 +247,7 @@ export default class Forms extends Component {
             className="px-6 py-2 my-6 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
           >
             Submit
+            <FontAwesomeIcon className="px-2" icon={['fas', 'plus-square']} />
           </button>
         </form>
 
