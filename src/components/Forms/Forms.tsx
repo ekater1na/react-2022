@@ -13,8 +13,8 @@ let productData = {
     count: 0,
   },
   date: '',
-  sale: '',
-  notification: '',
+  sale: false,
+  notification: false,
 };
 
 interface CreateProductProps {
@@ -31,7 +31,7 @@ export default class Forms extends React.Component {
   sale = React.createRef<HTMLInputElement>();
   notification = React.createRef<HTMLInputElement>();
 
-  // constructor(props: {} | unknown) {
+  // constructor(props) {
   //   super(props);
   //   this.handleSubmit = this.handleSubmit.bind(this);
   //   this.title = React.createRef();
@@ -51,8 +51,8 @@ export default class Forms extends React.Component {
         count: 0,
       },
       date: this.date.current!.value,
-      sale: this.sale.current!.value,
-      notification: this.notification.current!.value,
+      sale: this.sale.current!.checked,
+      notification: this.notification.current!.checked,
     };
 
     console.log('input', productData);
@@ -93,6 +93,7 @@ export default class Forms extends React.Component {
                   id="grid-category"
                   ref={this.category}
                 >
+                  <option></option>
                   <option>men&apos;s clothing</option>
                   <option>jewelery</option>
                   <option>electronics</option>
@@ -132,42 +133,21 @@ export default class Forms extends React.Component {
             </div>
           </div>
 
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3">
+          <div className="flex flex-wrap -mx-3">
+            <div className="w-full md:w-2/3 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-image"
               >
                 Upload image
               </label>
 
-              <div className="md:w-2/3">
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-image"
-                  placeholder="Please choose an image"
-                  type="text"
-                  ref={this.image}
-                />
-                <button type="submit">Upload</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap -mx-3 mb-2">
-            <div className="w-full md:w-1/3 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-last-name"
-              >
-                Price
-              </label>
               <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-price"
-                placeholder="20.99$"
-                type="text"
-                ref={this.price}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-image"
+                placeholder="Please choose an image"
+                type="file"
+                ref={this.image}
               />
             </div>
 
@@ -194,8 +174,51 @@ export default class Forms extends React.Component {
                 </button>
               </div>
             </div>
+          </div>
 
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <div className="flex flex-wrap -mx-3 mb-2">
+            <div className="w-full md:w-1/3 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-last-name"
+              >
+                Price
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-price"
+                placeholder="20.99$"
+                type="text"
+                ref={this.price}
+              />
+            </div>
+
+            <div className="w-full md:w-3/6 px-3">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-sale"
+              >
+                Notification
+              </label>
+
+              <div className="form-check">
+                <input
+                  className="px-3-2 w-4 h-4 text-blue-400 bg-gray-100 rounded border-gray-300"
+                  type="checkbox"
+                  defaultChecked={true}
+                  id="flexCheckIndeterminate"
+                  ref={this.notification}
+                />
+                <label
+                  className="form-check-label ml-2 inline-block text-gray-800"
+                  htmlFor="flexCheckIndeterminate"
+                >
+                  Add notifications for customers about promo
+                </label>
+              </div>
+            </div>
+
+            <div className="w-full md:w-1/6 px-3">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="grid-sale"
@@ -206,9 +229,10 @@ export default class Forms extends React.Component {
                 <div className="flex">
                   <label className="inline-flex relative items-center mr-5 cursor-pointer">
                     <input
+                      name="sale"
                       type="checkbox"
                       className="sr-only peer"
-                      checked={false}
+                      defaultChecked={true}
                       ref={this.sale}
                       readOnly={true}
                     />
@@ -223,28 +247,10 @@ export default class Forms extends React.Component {
             </div>
           </div>
 
-          <div className="mb-4">
-            <div className="form-check">
-              <input
-                className="px-3-2 w-4 h-4 text-blue-400 bg-gray-100 rounded border-gray-300"
-                type="checkbox"
-                // checked={false}
-                id="flexCheckIndeterminate"
-                ref={this.notification}
-              />
-              <label
-                className="form-check-label ml-2 inline-block text-gray-800"
-                htmlFor="flexCheckIndeterminate"
-              >
-                Add notifications for customers about promo
-              </label>
-            </div>
-          </div>
-
           <button
             type="submit"
             value="Submit"
-            className="px-6 py-2 my-6 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
+            className="px-16 py-4 my-6 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
           >
             Submit
             <FontAwesomeIcon className="px-2" icon={['fas', 'plus-square']} />
