@@ -125,6 +125,7 @@ export default class Form extends React.Component<FormProps, FormState> {
 
       this.form.current?.reset();
       this.notification.current!.checked = false;
+      this.sale.current!.checked = false;
       this.date.current!.value = '';
     }
   }
