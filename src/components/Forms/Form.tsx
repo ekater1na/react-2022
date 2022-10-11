@@ -1,67 +1,138 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IProduct } from '../../models';
+import { Product } from '../../models';
 
-let productData = {
-  title: '',
-  price: '',
-  description: '',
-  image: '',
-  category: '',
-  rating: {
-    rate: 0,
-    count: 0,
-  },
-  date: '',
-  sale: false,
-  notification: false,
-};
-
-interface CreateProductProps {
-  onCreate: (product: IProduct) => void;
+interface FormErrors {
+  [key: string]: string | boolean | undefined;
 }
 
-export default class Forms extends React.Component {
-  title = React.createRef<HTMLInputElement>();
-  price = React.createRef<HTMLInputElement>();
-  description = React.createRef<HTMLInputElement>();
-  image = React.createRef<HTMLInputElement>();
-  category = React.createRef<HTMLSelectElement>();
-  date = React.createRef<HTMLInputElement>();
-  sale = React.createRef<HTMLInputElement>();
-  notification = React.createRef<HTMLInputElement>();
+interface FormProps {
+  setFormValues: (value: Product) => void;
+}
 
-  // constructor(props) {
-  //   super(props);
-  //   this.handleSubmit = this.handleSubmit.bind(this);
-  //   this.title = React.createRef();
-  // }
+interface FormState {
+  formValues: Product;
+  errors: FormErrors;
+}
 
-  handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+export default class Form extends React.Component<FormProps, FormState> {
+  form: React.RefObject<HTMLFormElement>;
+  title: React.RefObject<HTMLInputElement>;
+  price: React.RefObject<HTMLInputElement>;
+  description: React.RefObject<HTMLInputElement>;
+  image: React.RefObject<HTMLInputElement>;
+  category: React.RefObject<HTMLSelectElement>;
+  date: React.RefObject<HTMLInputElement>;
+  sale: React.RefObject<HTMLInputElement>;
+  notification: React.RefObject<HTMLInputElement>;
 
-    productData = {
-      title: this.title.current!.value,
-      price: this.price.current!.value,
-      description: this.description.current!.value,
-      image: this.image.current!.value,
-      category: this.category.current!.value,
-      rating: {
-        rate: 0,
-        count: 0,
+  errorMessage = 'Please add ';
+
+  constructor(props: FormProps) {
+    super(props);
+
+    this.form = React.createRef();
+    this.title = React.createRef();
+    this.price = React.createRef();
+    this.description = React.createRef();
+    this.image = React.createRef();
+    this.category = React.createRef();
+    this.date = React.createRef();
+    this.sale = React.createRef();
+    this.notification = React.createRef();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.hasError = this.hasError.bind(this);
+
+    this.state = {
+      formValues: {
+        title: '',
+        price: '',
+        description: '',
+        image: '',
+        category: '',
+        date: '',
+        sale: false,
+        notification: false,
       },
-      date: this.date.current!.value,
-      sale: this.sale.current!.checked,
-      notification: this.notification.current!.checked,
+      errors: {},
     };
+  }
 
-    console.log('input', productData);
-  };
+  async setFormState() {
+    await this.setState({
+      formValues: {
+        title: this.title.current!.value,
+        price: this.price.current!.value,
+        description: this.description.current!.value,
+        image:
+          (this.image.current?.files as FileList)[0] !== undefined
+            ? URL.createObjectURL((this.image.current?.files as FileList)[0])
+            : require(`../../assets/default.jpg`),
+        category: this.category.current!.value,
+        date: this.date.current!.value,
+        sale: this.sale.current!.checked,
+        notification: this.notification.current!.checked,
+      },
+      errors: {},
+    });
+  }
+
+  async validateField(fieldName: string) {
+    if (!this.state.formValues[fieldName]) {
+      await this.setState({
+        errors: { ...this.state.errors, [fieldName]: fieldName },
+      });
+    }
+    console.log('validation', this.state);
+  }
+
+  async validate() {
+    await this.setFormState();
+    await this.validateField('title');
+    await this.validateField('category');
+    await this.validateField('description');
+    await this.validateField('image');
+    await this.validateField('date');
+    await this.validateField('price');
+  }
+
+  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const name = event.target.name;
+    this.setState({
+      errors: { ...this.state.errors, [name]: undefined },
+    });
+  }
+
+  hasError() {
+    return (
+      this.state?.errors.title === '' ||
+      this.state?.errors.category === '' ||
+      this.state?.errors.description === '' ||
+      this.state?.errors.date === '' ||
+      this.state?.errors.price === '' ||
+      Object.keys(this.state.errors).length === 0
+    );
+  }
+
+  async handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    await this.validate();
+
+    if (Object.keys(this.state.errors).length === 0) {
+      this.props.setFormValues(this.state.formValues);
+
+      this.form.current?.reset();
+      this.notification.current!.checked = false;
+      this.date.current!.value = '';
+    }
+  }
 
   render() {
     return (
       <div className="container mx-auto sm:max-w-2xl my-4">
-        <form className="w-full" onSubmit={this.handleSubmit}>
+        <form className="w-full" onSubmit={this.handleSubmit} ref={this.form} data-testid="form">
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -73,11 +144,16 @@ export default class Forms extends React.Component {
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-title"
-                placeholder="Title"
+                data-testid="title"
+                placeholder="Add title"
                 type="text"
                 ref={this.title}
               />
-              {/*<p className="text-red-500 text-xs italic">Please fill out this field.</p>*/}
+              {this.state.errors.title && (
+                <p className="text-red-500 text-xs italic">
+                  {this.errorMessage} {this.state.errors.title}
+                </p>
+              )}
             </div>
 
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -92,12 +168,15 @@ export default class Forms extends React.Component {
                   className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-category"
                   ref={this.category}
+                  defaultValue={this.state.formValues.category}
                 >
-                  <option></option>
-                  <option>men&apos;s clothing</option>
-                  <option>jewelery</option>
-                  <option>electronics</option>
-                  <option>women&apos;s clothing</option>
+                  <option disabled value="">
+                    Choose category
+                  </option>
+                  <option value="men's clothing">men&apos;s clothing</option>
+                  <option value="jewelery">jewelery</option>
+                  <option value="electronics">electronics</option>
+                  <option value="women's clothing">women&apos;s clothing</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -108,6 +187,11 @@ export default class Forms extends React.Component {
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
                 </div>
+                {this.state.errors.category && (
+                  <p className="text-red-500 text-xs italic">
+                    {this.errorMessage} {this.state.errors.category}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -127,9 +211,11 @@ export default class Forms extends React.Component {
                 type="text"
                 ref={this.description}
               />
-              {/*<p className="text-gray-600 text-xs italic">*/}
-              {/*  Make it as long and as crazy as you would like*/}
-              {/*</p>*/}
+              {this.state.errors.description && (
+                <p className="text-red-500 text-xs italic">
+                  {this.errorMessage} {this.state.errors.description}
+                </p>
+              )}
             </div>
           </div>
 
@@ -149,6 +235,9 @@ export default class Forms extends React.Component {
                 type="file"
                 ref={this.image}
               />
+              {this.state.errors.image && (
+                <p className="text-red-500 text-xs italic">{this.errorMessage}</p>
+              )}
             </div>
 
             <div className="w-full md:w-1/3 px-3">
@@ -168,6 +257,11 @@ export default class Forms extends React.Component {
                   type="Date"
                   ref={this.date}
                 />
+                {this.state.errors.date && (
+                  <p className="text-red-500 text-xs italic">
+                    {this.errorMessage} {this.state.errors.date}
+                  </p>
+                )}
 
                 <button className="datepicker-toggle-button" data-mdb-toggle="datepicker">
                   <i className="fas fa-calendar datepicker-toggle-icon"></i>
@@ -187,10 +281,15 @@ export default class Forms extends React.Component {
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-price"
-                placeholder="20.99$"
+                placeholder="Add price"
                 type="text"
                 ref={this.price}
               />
+              {this.state.errors.price && (
+                <p className="text-red-500 text-xs italic">
+                  {this.errorMessage} {this.state.errors.price}
+                </p>
+              )}
             </div>
 
             <div className="w-full md:w-3/6 px-3">
@@ -210,7 +309,7 @@ export default class Forms extends React.Component {
                   ref={this.notification}
                 />
                 <label
-                  className="form-check-label ml-2 inline-block text-gray-800"
+                  className="form-check-label ml-2 text-gray-800"
                   htmlFor="flexCheckIndeterminate"
                 >
                   Add notifications for customers about promo
@@ -249,17 +348,13 @@ export default class Forms extends React.Component {
 
           <button
             type="submit"
-            value="Submit"
+            // disabled={this.hasError()}
             className="px-16 py-4 my-6 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
           >
             Submit
             <FontAwesomeIcon className="px-2" icon={['fas', 'plus-square']} />
           </button>
         </form>
-
-        {/*<div className="flex items-center justify-center">*/}
-        {/* */}
-        {/*</div>*/}
       </div>
     );
   }
