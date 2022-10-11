@@ -26,7 +26,7 @@ export default class Form extends React.Component<FormProps, FormState> {
   sale: React.RefObject<HTMLInputElement>;
   notification: React.RefObject<HTMLInputElement>;
 
-  errorMessage = 'Please add ';
+  errorMessage = 'Please add data';
 
   constructor(props: FormProps) {
     super(props);
@@ -82,10 +82,9 @@ export default class Form extends React.Component<FormProps, FormState> {
   async validateField(fieldName: string) {
     if (!this.state.formValues[fieldName]) {
       await this.setState({
-        errors: { ...this.state.errors, [fieldName]: fieldName },
+        errors: { ...this.state.errors, [fieldName]: this.state.formValues[fieldName] },
       });
     }
-    console.log('validation', this.state);
   }
 
   async validate() {
@@ -106,14 +105,18 @@ export default class Form extends React.Component<FormProps, FormState> {
   }
 
   hasError() {
-    return (
-      this.state?.errors.title === '' ||
-      this.state?.errors.category === '' ||
-      this.state?.errors.description === '' ||
-      this.state?.errors.date === '' ||
-      this.state?.errors.price === '' ||
+    if (
+      this.state.errors.title === '' ||
+      this.state.errors.category === '' ||
+      this.state.errors.description === '' ||
+      this.state.errors.date === '' ||
+      this.state.errors.price === '' ||
       Object.keys(this.state.errors).length === 0
-    );
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   async handleSubmit(event: React.FormEvent) {
@@ -150,9 +153,9 @@ export default class Form extends React.Component<FormProps, FormState> {
                 type="text"
                 ref={this.title}
               />
-              {this.state.errors.title && (
-                <p className="text-red-500 text-xs italic">
-                  {this.errorMessage} {this.state.errors.title}
+              {this.state.errors.title !== undefined && (
+                <p className="text-red-500 text-xs italic" data-testid="title-error">
+                  {this.errorMessage}
                 </p>
               )}
             </div>
@@ -188,10 +191,8 @@ export default class Form extends React.Component<FormProps, FormState> {
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
                 </div>
-                {this.state.errors.category && (
-                  <p className="text-red-500 text-xs italic">
-                    {this.errorMessage} {this.state.errors.category}
-                  </p>
+                {this.state.errors.category !== undefined && (
+                  <p className="text-red-500 text-xs italic">{this.errorMessage}</p>
                 )}
               </div>
             </div>
@@ -212,10 +213,8 @@ export default class Form extends React.Component<FormProps, FormState> {
                 type="text"
                 ref={this.description}
               />
-              {this.state.errors.description && (
-                <p className="text-red-500 text-xs italic">
-                  {this.errorMessage} {this.state.errors.description}
-                </p>
+              {this.state.errors.description !== undefined && (
+                <p className="text-red-500 text-xs italic">{this.errorMessage}</p>
               )}
             </div>
           </div>
@@ -236,7 +235,7 @@ export default class Form extends React.Component<FormProps, FormState> {
                 type="file"
                 ref={this.image}
               />
-              {this.state.errors.image && (
+              {this.state.errors.image !== undefined && (
                 <p className="text-red-500 text-xs italic">{this.errorMessage}</p>
               )}
             </div>
@@ -258,10 +257,8 @@ export default class Form extends React.Component<FormProps, FormState> {
                   type="Date"
                   ref={this.date}
                 />
-                {this.state.errors.date && (
-                  <p className="text-red-500 text-xs italic">
-                    {this.errorMessage} {this.state.errors.date}
-                  </p>
+                {this.state.errors.date !== undefined && (
+                  <p className="text-red-500 text-xs italic">{this.errorMessage}</p>
                 )}
 
                 <button className="datepicker-toggle-button" data-mdb-toggle="datepicker">
@@ -286,10 +283,8 @@ export default class Form extends React.Component<FormProps, FormState> {
                 type="text"
                 ref={this.price}
               />
-              {this.state.errors.price && (
-                <p className="text-red-500 text-xs italic">
-                  {this.errorMessage} {this.state.errors.price}
-                </p>
+              {this.state.errors.price !== undefined && (
+                <p className="text-red-500 text-xs italic">{this.errorMessage}</p>
               )}
             </div>
 
@@ -349,8 +344,11 @@ export default class Form extends React.Component<FormProps, FormState> {
 
           <button
             type="submit"
-            // disabled={this.hasError()}
-            className="px-16 py-4 my-6 text-sm font-semibold text-blue-600 bg-blue-100 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
+            data-testid="btn-submit"
+            disabled={this.hasError()}
+            className={
+              this.hasError() ? 'bg-blue-100 py-4 my-6 px-16' : 'bg-green-400 py-4 my-6 px-16'
+            }
           >
             Submit
             <FontAwesomeIcon className="px-2" icon={['fas', 'plus-square']} />
