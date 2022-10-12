@@ -8,7 +8,7 @@ interface ProductProps {
 
 export function ProductItem({ product }: ProductProps) {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto" data-testid="product-item">
       <div className="border my-1 py-2 px-6 rounded flex flex-col items-center mb-2 h-64">
         <div className="h-1/2 flex justify-center">
           <img src={product.image} alt={product.title} className=" rounded-t-s" />

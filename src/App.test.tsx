@@ -3,6 +3,14 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import { faCalendarDays, faCheckSquare, faPlusSquare, faPercent } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+library.add(
+    faCheckSquare,
+    faPlusSquare,
+    faPercent,
+    faCalendarDays
+);
 
 describe('Router', () => {
   test('pages', () => {

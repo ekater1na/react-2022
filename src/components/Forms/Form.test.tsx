@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Form from './Form';
-import userEvent from '@testing-library/user-event';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+library.add(faPlusSquare);
 
 const setFormValues = jest.fn();
 
@@ -18,10 +20,9 @@ describe('Forms component', () => {
     expect(elem).toMatchSnapshot();
   });
 
-  test('form submit disabled', async () => {
-    render(<Form setFormValues={setFormValues} />);
+  test('form submit not disabled', async () => {
+    render(<Form setFormValues={setFormValues}/>);
     const elem = await screen.findByTestId('btn-submit');
-    await userEvent.click(elem);
     await expect(elem).not.toBeDisabled();
   });
 });

@@ -17,10 +17,15 @@ type FormCardState = Record<string, never>;
 export default class FormCard extends React.Component<FormCardProps, FormCardState> {
   render() {
     return (
-      <div className="container mx-auto">
+      <div className="container mx-auto" data-testid="form-card">
         <div className="border my-1 py-2 px-6 rounded flex flex-col items-center mb-2 h-64">
           <div className="h-1/2 flex justify-center">
-            <img src={this.props.image} alt={this.props.title} className=" rounded-t-s" />
+            <img
+              src={this.props.image}
+              alt={this.props.title}
+              className=" rounded-t-s"
+              data-testid="form-image"
+            />
           </div>
           <div className="w-full">
             <p className="text-center truncate text-red-500 text-xl font-bold">
