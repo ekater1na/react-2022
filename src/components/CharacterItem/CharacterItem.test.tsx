@@ -5,11 +5,11 @@ import {
   faCalendarDays,
   faCheckSquare,
   faPlusSquare,
-  faPercent,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { ICharacter } from '../../models';
-library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
+library.add(faCheckSquare, faPlusSquare, faUser, faCalendarDays);
 
 const mockCharacter: ICharacter = {
   id: 1,

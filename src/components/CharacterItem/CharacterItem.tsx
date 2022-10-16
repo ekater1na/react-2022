@@ -60,7 +60,7 @@ export class CharacterItem extends React.Component<CharacterProps, CharacterStat
             <span
               className={character.gender === 'Male' ? 'text-blue-600 px-3' : 'text-red-600 px-3'}
             >
-              <FontAwesomeIcon icon={['fas', 'percent']} title="gender" />
+              <FontAwesomeIcon icon={['fas', 'user']} title="gender" />
             </span>
 
             <span className={character.status !== 'alive' ? 'text-green-600' : 'text-gray-300'}>

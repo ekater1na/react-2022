@@ -10,7 +10,7 @@ import {
   faCalendarDays,
   faDatabase,
   faPlusSquare,
-  faPercent,
+  faUser,
   faS,
   faWindowMaximize,
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +20,7 @@ library.add(
   faS,
   faPlusSquare,
   faCheckSquare,
-  faPercent,
+  faUser,
   faCalendarDays,
   faDatabase,
   faWindowMaximize
