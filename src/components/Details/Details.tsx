@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import { IProduct } from '../../models';
-import axios from 'axios';
+import { ICharacter } from '../../models';
 
-interface ProductProps {
-  product: IProduct;
+interface CharacterProps {
+  character: ICharacter;
 }
 interface CreateProductProps {
-  onOpen: (product: IProduct) => void;
+  onOpen: (character: ICharacter) => void;
 }
 
-const productData: IProduct = {
-  title: '',
-  price: 13.5,
-  description: 'lorem ipsum set',
-  image: 'https://i.pravatar.cc',
-  category: 'electronic',
-  rating: {
-    rate: 40,
-    count: 10,
-  },
-};
+// const productData: IProduct = {
+//   title: '',
+//   price: 13.5,
+//   description: 'lorem ipsum set',
+//   image: 'https://i.pravatar.cc',
+//   category: 'electronic',
+//   rating: {
+//     rate: 40,
+//     count: 10,
+//   },
+// };
 
 export function Details({ onOpen }: CreateProductProps) {
   const [value, setValue] = useState('');
@@ -29,16 +28,16 @@ export function Details({ onOpen }: CreateProductProps) {
     event.preventDefault();
     setError('');
 
-    productData.title = value;
+    // productData.title = value;
 
     if (value.trim().length === 0) {
       setError('Please enter valid title');
       return;
     }
 
-    const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData);
-
-    onOpen(response.data);
+    // const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData);
+    //
+    // onOpen(response.data);
   };
 
   return (

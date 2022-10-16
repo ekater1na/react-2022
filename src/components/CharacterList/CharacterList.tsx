@@ -1,37 +1,21 @@
 import React from 'react';
-import { ProductItem } from '../ProductItem/ProductItem';
-import { IProduct } from '../../models';
+import { CharacterItem } from '../CharacterItem/CharacterItem';
+import { ICharacter, IResponse } from '../../models';
 import axios, { AxiosError } from 'axios';
 import { Loader } from '../Loader/Loader';
 import { ErrorMessage } from '../Error/Error';
 
-type FormCardProps = {
-  id?: number;
-  title: string;
-  price: number | string;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    count: number;
-    rate: number;
-  };
-  date?: Date;
-  sale?: boolean;
-  notification?: boolean;
+type CharacterCardsProps = {
+  character: ICharacter[];
 };
 
-type FormCardsProps = {
-  product: FormCardProps[];
-};
-
-type FormCardState = {
-  data: IProduct[];
+type CharacterCardState = {
+  data: ICharacter[];
   isLoaded: boolean;
   error: string;
 };
 
-export class ProductList extends React.Component<FormCardsProps, FormCardState> {
+export class CharacterList extends React.Component<CharacterCardsProps, CharacterCardState> {
   state = {
     data: [],
     isLoaded: false,
@@ -41,8 +25,10 @@ export class ProductList extends React.Component<FormCardsProps, FormCardState> 
   async componentDidMount() {
     try {
       this.setState({ isLoaded: true, error: '' });
-      const response = await axios.get<IProduct[]>('https://fakestoreapi.com/products');
-      const dataSet = response.data;
+      const response = await axios.get<IResponse>('https://rickandmortyapi.com/api/character');
+      console.log(response);
+
+      const dataSet = response.data.results;
       console.log(dataSet);
 
       this.setState({ data: dataSet, isLoaded: false });
@@ -56,12 +42,12 @@ export class ProductList extends React.Component<FormCardsProps, FormCardState> 
     const { data, isLoaded, error } = this.state;
 
     return (
-      <div>
+      <div data-testid={'character-list'}>
         {isLoaded && <Loader />}
         {error && <ErrorMessage error={error} />}
         {
           <div className="grid grid-cols-5 gap-3" data-testid="cards">
-            {data && data.map((product, index) => <ProductItem product={product} key={index} />)}
+            {data && data.map((item, index) => <CharacterItem character={item} key={index} />)}
           </div>
         }
       </div>

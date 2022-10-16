@@ -1,25 +1,25 @@
 import React from 'react';
-import { IProduct } from '../../models';
+import { ICharacter } from '../../models';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from '../Modal/Modal';
 import { Details } from '../Details/Details';
 
-interface ProductProps {
-  product: IProduct;
+interface CharacterProps {
+  character: ICharacter;
 }
-interface ProductState {
+interface CharacterState {
   showModal: boolean;
 }
 
-export class ProductItem extends React.Component<ProductProps, ProductState> {
-  constructor(props: ProductProps) {
+export class CharacterItem extends React.Component<CharacterProps, CharacterState> {
+  constructor(props: CharacterProps) {
     super(props);
     this.state = { showModal: false };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
   }
 
-  createHandler = (product: IProduct) => {
+  createHandler = (character: ICharacter) => {
     // this.setState({ showModal: false });
     console.log('createHandler');
   };
@@ -33,40 +33,42 @@ export class ProductItem extends React.Component<ProductProps, ProductState> {
   };
 
   render() {
-    const { product } = this.props;
+    const { character } = this.props;
     return (
-      <div className="container mx-auto" data-testid="product-item">
+      <div className="container mx-auto" data-testid="character-item">
         <div className="border my-1 py-2 px-6 rounded flex flex-col items-center mb-2 h-64">
           <div className="h-1/2 flex justify-center" onClick={this.showModal}>
             <img
-              src={product.image}
-              alt={product.title}
+              src={character.image}
+              alt={character.image}
               className=" rounded-t-s"
               // onClick={this.showModal}
             />
           </div>
           <div className="w-full">
-            <p className="text-center truncate text-red-500 text-xl font-bold">{product.title}</p>
+            <p className="text-center truncate text-red-500 text-xl font-bold">{character.name}</p>
+            <p className="text-center truncate text-sm px-2">{character.origin.name}</p>
           </div>
-          <p className="font-bold text-xl px-2">{product.price}$</p>
-          <p className="text-gray-400 text-sm">{product.category}</p>
+          <p className="text-gray-400 text-sm">{character.species}</p>
 
           <div className="px-1 py-2">
             <FontAwesomeIcon icon={['fas', 'calendar-days']} />
             <span className="px-1 text-sm font-semibold text-blue-700">
-              {product.date?.toLocaleDateString()}
+              {character.created.slice(0, 10)}
             </span>
 
-            <span className={product.sale === true ? 'text-green-600 px-3' : 'text-gray-300 px-3'}>
-              <FontAwesomeIcon icon={['fas', 'percent']} title="sale" />
+            <span
+              className={character.gender === 'Male' ? 'text-blue-600 px-3' : 'text-red-600 px-3'}
+            >
+              <FontAwesomeIcon icon={['fas', 'percent']} title="gender" />
             </span>
 
-            <span className={product.notification === true ? 'text-green-600' : 'text-gray-300'}>
-              <FontAwesomeIcon icon={['fas', 'check-square']} title="promotion" />
+            <span className={character.status !== 'alive' ? 'text-green-600' : 'text-gray-300'}>
+              <FontAwesomeIcon icon={['fas', 'check-square']} title="alive" />
             </span>
 
             {this.state.showModal && (
-              <Modal title="Product details" onClose={this.hideModal}>
+              <Modal title="Character details" onClose={this.hideModal}>
                 <Details onOpen={this.createHandler} />
               </Modal>
             )}
