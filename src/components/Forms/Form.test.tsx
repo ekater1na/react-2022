@@ -14,12 +14,6 @@ describe('Forms component', () => {
     expect(elem).toBeInTheDocument();
   });
 
-  test('form snapshot', async () => {
-    render(<Form setFormValues={setFormValues} />);
-    const elem = await screen.getByTestId('form');
-    expect(elem).toMatchSnapshot();
-  });
-
   test('form submit not disabled', async () => {
     render(<Form setFormValues={setFormValues}/>);
     const elem = await screen.findByTestId('btn-submit');
