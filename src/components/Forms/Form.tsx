@@ -298,6 +298,8 @@ export default class Form extends React.Component<FormProps, FormState> {
 
               <div className="form-check">
                 <input
+                  data-testid="notification"
+                  onChange={this.handleChange}
                   className="px-3-2 w-4 h-4 text-blue-400 bg-gray-100 rounded border-gray-300"
                   type="checkbox"
                   defaultChecked={true}
