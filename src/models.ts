@@ -31,7 +31,7 @@ export interface IResponse {
     count: number;
     pages: number;
     next: string;
-    prev: number | null;
+    prev: string;
   };
   results: ICharacter[];
 }

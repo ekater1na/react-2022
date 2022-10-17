@@ -1,48 +1,65 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ICharacter } from '../../models';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface CharacterProps {
   character: ICharacter;
 }
-interface CreateProductProps {
-  onOpen: (character: ICharacter) => void;
-}
 
-// const productData: IProduct = {
-//   title: '',
-//   price: 13.5,
-//   description: 'lorem ipsum set',
-//   image: 'https://i.pravatar.cc',
-//   category: 'electronic',
-//   rating: {
-//     rate: 40,
-//     count: 10,
-//   },
-// };
-
-export function Details({ onOpen }: CreateProductProps) {
-  const [value, setValue] = useState('');
-  const [error, setError] = useState('');
-
-  const submitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError('');
-
-    // productData.title = value;
-
-    if (value.trim().length === 0) {
-      setError('Please enter valid title');
-      return;
-    }
-
-    // const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData);
-    //
-    // onOpen(response.data);
-  };
-
+export function Details({ character }: CharacterProps) {
   return (
-    <div className="container mx-auto" data-testid="details">
-      <p>Test</p>
+    <div
+      className="container mx-auto bg-gradient-to-r from-blue-900 to-blue-500 p-4 py-5 px-5 rounded-xl"
+      data-testid="details"
+    >
+      <div className="flex items-center justify-between py-3">
+        <p className="text-sm text-white mt-[3px]">Episodes: {character.episode.length}</p>
+        <p className="text-sm text-white mt-[3px]">ID: {character.id}</p>
+      </div>
+      <div className="my-1 py-2 px-6 rounded flex flex-col items-center mb-2 h-80">
+        <div className="h-1/2 flex justify-center">
+          <img src={character.image} alt={character.image} className=" rounded-t-s" />
+        </div>
+        <div className="w-full">
+          <p className="text-center truncate text-red-400 text-xl font-bold">{character.name}</p>
+          <a href={character.origin.url} target="_blank" rel="noreferrer">
+            <p className="text-center truncate text-sm px-2" title="origin name">
+              {character.origin.name}
+            </p>
+          </a>
+        </div>
+        <p className="text-gray-400 text-sm">{character.species}</p>
+
+        <div className="px-1 py-2">
+          <div className="flex items-center justify-between">
+            <span className="text-white px-2">
+              <FontAwesomeIcon icon={['fas', 'calendar-days']} />
+              <span className="px-1 text-sm font-semibold text-blue-200">
+                {character.created.slice(0, 10)}
+              </span>
+            </span>
+
+            <span
+              className={character.gender === 'Male' ? 'text-blue-900 px-3' : 'text-red-600 px-3'}
+            >
+              <span className="text-white px-2"> Gender:</span>
+              <FontAwesomeIcon icon={['fas', 'user']} />
+            </span>
+            <span className={character.status !== 'alive' ? 'text-green-600' : 'text-gray-300'}>
+              <span className="text-white px-2"> Status:</span>
+              <FontAwesomeIcon icon={['fas', 'check-square']} />
+            </span>
+          </div>
+          <div className="text-center">
+            <p className="text-sm text-blue-200 mt-[3px]">Location: {character.location.name}</p>
+            <button className="bg-white hover:bg-white-500 text-blue-700 font-semibold hover:text-blue-900 my-4 py-1 px-4 border border-blue-500 hover:border-transparent rounded">
+              <a href={character.url} target="_blank" rel="noreferrer">
+                Visit page
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

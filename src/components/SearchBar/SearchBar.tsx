@@ -21,7 +21,6 @@ export default class SearchBar extends Component {
 
   onFormChange(e: ChangeEvent<HTMLInputElement>) {
     this.setState({ searchValue: e.target.value });
-    console.log(e.target.value);
   }
 
   render() {

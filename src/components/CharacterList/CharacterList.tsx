@@ -26,11 +26,7 @@ export class CharacterList extends React.Component<CharacterCardsProps, Characte
     try {
       this.setState({ isLoaded: true, error: '' });
       const response = await axios.get<IResponse>('https://rickandmortyapi.com/api/character');
-      console.log(response);
-
       const dataSet = response.data.results;
-      console.log(dataSet);
-
       this.setState({ data: dataSet, isLoaded: false });
     } catch (e: unknown) {
       const error = e as AxiosError;
@@ -47,7 +43,8 @@ export class CharacterList extends React.Component<CharacterCardsProps, Characte
         {error && <ErrorMessage error={error} />}
         {
           <div className="grid grid-cols-5 gap-3" data-testid="cards">
-            {data && data.map((item, index) => <CharacterItem character={item} key={index} />)}
+            {data &&
+              data.map((item: ICharacter) => <CharacterItem character={item} key={item.id} />)}
           </div>
         }
       </div>
