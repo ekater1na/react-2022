@@ -3,8 +3,9 @@ import React from 'react';
 import { CharacterList } from './CharacterList';
 import { render, screen } from '@testing-library/react';
 import { faCalendarDays, faCheckSquare, faPercent } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { ICharacter } from '../../models';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faCheckSquare, faPercent, faCalendarDays);
 
 const mockCharacter: ICharacter[] = [

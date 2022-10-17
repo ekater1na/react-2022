@@ -1,11 +1,11 @@
 import React from 'react';
-import SearchBar from '../components/SearchBar/SearchBar';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import { CharacterList } from 'components/CharacterList/CharacterList';
-import { ICharacter, IResponse } from '../models';
-import { Loader } from '../components/Loader/Loader';
-import { ErrorMessage } from '../components/Error/Error';
+import { ICharacter, IResponse } from '../../models';
+import { Loader } from '../../components/Loader/Loader';
+import { ErrorMessage } from '../../components/Error/Error';
 import axios, { AxiosError } from 'axios';
-import { CharacterItem } from '../components/CharacterItem/CharacterItem';
+import { CharacterItem } from '../../components/CharacterItem/CharacterItem';
 
 type HomePageProps = Record<string, never>;
 type HomePageState = {
@@ -48,7 +48,6 @@ export class HomePage extends React.Component<HomePageProps, HomePageState> {
       this.setState({ characters: dataSet, isLoaded: false, showList: false });
     } catch (e: unknown) {
       const error = e as AxiosError;
-      console.log(error.request.response);
       this.setState({ isLoaded: false, error: error.message, showList: false });
     }
   }
@@ -56,7 +55,7 @@ export class HomePage extends React.Component<HomePageProps, HomePageState> {
   render() {
     const { characters, isLoaded, error, showList } = this.state;
     return (
-      <div>
+      <div data-testid="home-page">
         <SearchBar
           searchValue={this.state.searchValue}
           onSearchBarChange={this.handleSearchBarChange}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SearchBar from './SearchBar';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 const onChange = jest.fn();
 const onSumbit = jest.fn();
@@ -13,15 +13,6 @@ describe('SearchBar component', () => {
     expect(input).not.toHaveFocus();
     input.focus();
     expect(input).toHaveFocus();
-  });
-  it('input content', () => {
-    render(<SearchBar searchValue="" onSearchBarChange={onChange} onSearchBarSubmit={onSumbit} />);
-    const input = screen.getByPlaceholderText<HTMLInputElement>(/enter/i);
-    expect(input).toContainHTML('');
-    fireEvent.input(input, {
-      target: { value: 'Search' },
-    });
-    expect(input).toContainHTML('Search');
   });
 });
 
@@ -49,17 +40,5 @@ describe('LocalStorage', () => {
     expect(input).toBeTruthy();
   });
 
-  it('get localStorage data', () => {
-    const { unmount } = render(
-      <SearchBar searchValue="" onSearchBarChange={onChange} onSearchBarSubmit={onSumbit} />
-    );
-    const input = screen.getByPlaceholderText(/enter/i);
 
-    fireEvent.input(input, {
-      target: { value: 'LS Item' },
-    });
-    localStorageMock.setItem('Search', 'LS Item');
-    unmount();
-    expect(input).toContainHTML('LS Item');
-  });
 });
