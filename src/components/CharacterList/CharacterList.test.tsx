@@ -7,7 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { ICharacter } from '../../models';
 library.add(faCheckSquare, faPercent, faCalendarDays);
 
-const mockCharacter: ICharacter =
+const mockCharacter: ICharacter[] = [
   {
     id: 1,
     name: 'Rick Sanchez',
@@ -30,14 +30,18 @@ const mockCharacter: ICharacter =
     ],
     url: 'https://rickandmortyapi.com/api/character/1',
     created: '2017-11-04T18:48:46.250Z',
-  }
-;
-
+  },
+];
 describe('CharacterList component', () => {
   test('renders list of cards', () => {
-    // @ts-ignore
-    render(<CharacterList character={mockCharacter} />);
+    render(<CharacterList characters={mockCharacter} />);
     const elem = screen.getByTestId<HTMLElement>('character-list');
     expect(elem).toBeInTheDocument();
+  });
+
+  test('renders cards', () => {
+    render(<CharacterList characters={mockCharacter} />);
+    const elem = screen.getAllByTestId<HTMLElement>('cards');
+    expect(elem).toHaveLength(1);
   });
 });

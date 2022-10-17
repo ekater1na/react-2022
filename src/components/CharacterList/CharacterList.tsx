@@ -6,7 +6,7 @@ import { Loader } from '../Loader/Loader';
 import { ErrorMessage } from '../Error/Error';
 
 type CharacterCardsProps = {
-  character: ICharacter[];
+  characters: ICharacter[];
 };
 
 type CharacterCardState = {
@@ -36,7 +36,6 @@ export class CharacterList extends React.Component<CharacterCardsProps, Characte
 
   render() {
     const { data, isLoaded, error } = this.state;
-
     return (
       <div data-testid={'character-list'}>
         {isLoaded && <Loader />}

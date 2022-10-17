@@ -1,30 +1,33 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React from 'react';
 import { Component } from 'react';
 
-export default class SearchBar extends Component {
-  state = {
-    searchValue: '',
-  };
+type SearchBarProps = {
+  searchValue: string;
+  onSearchBarChange: (value: string) => void;
+  onSearchBarSubmit: () => void;
+};
 
-  componentDidMount() {
-    const searchValue = localStorage.getItem('Search' || '');
-    this.setState({ searchValue });
+type SearchBarState = Record<string, never>;
+
+export default class SearchBar extends Component<SearchBarProps, SearchBarState> {
+  constructor(props: SearchBarProps) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillUnmount() {
-    localStorage.setItem('Search', this.state.searchValue ? this.state.searchValue : '');
+  handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    this.props.onSearchBarChange(event.target.value);
   }
 
-  onFormSubmit(e: FormEvent) {
-    e.preventDefault();
-  }
-
-  onFormChange(e: ChangeEvent<HTMLInputElement>) {
-    this.setState({ searchValue: e.target.value });
+  handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    if (this.props.searchValue) {
+      this.props.onSearchBarSubmit();
+    }
   }
 
   render() {
-    const { searchValue } = this.state;
     return (
       <div className="bg-blue-100 flex flex-col justify-center">
         <div className="relative p-4 w-full sm:max-w-2xl sm:mx-auto">
@@ -32,14 +35,14 @@ export default class SearchBar extends Component {
             <form
               role="form"
               className="relative flex z-50 bg-white rounded-full"
-              onSubmit={(e) => this.onFormSubmit(e)}
+              onSubmit={this.handleSubmit}
             >
               <input
                 type="text"
-                placeholder="enter"
+                placeholder="enter name, for example 'Rick'"
                 className="rounded-full flex-1 px-6 py-2 text-gray-700 focus:outline-none"
-                onChange={(e) => this.onFormChange(e)}
-                value={searchValue || ''}
+                onChange={this.handleChange}
+                value={this.props.searchValue}
               />
               <button
                 className="bg-blue-600 text-white rounded-full font-semibold px-8 py-2 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
