@@ -1,0 +1,24 @@
+import React, { useState } from 'react';
+
+import { Product } from '../../models';
+import FormCard from '../../components/FormCard/FormCard';
+import Form from '../../components/Forms/Form';
+
+export function FormPage() {
+  const [values, setValues] = useState<Product[]>([]);
+
+  const addValue = (data: Product) => {
+    setValues((prev) => [...prev, data]);
+  };
+
+  return (
+    <div data-testid="form-page">
+      <Form setFormValues={addValue} />
+      <div className="container mx-auto max-w-8xl">
+        <div className="grid grid-cols-4 gap-3" data-testid="product-cards">
+          {values && values.map((item: Product) => <FormCard key={item.id} item={item} />)}
+        </div>
+      </div>
+    </div>
+  );
+}

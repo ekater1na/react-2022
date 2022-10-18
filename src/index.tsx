@@ -5,28 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import {
-  faB,
   faCheckSquare,
   faCalendarDays,
-  faDatabase,
   faPercent,
-  faPlusSquare,
   faUser,
-  faS,
-  faWindowMaximize,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-library.add(
-  faB,
-  faS,
-  faPlusSquare,
-  faCheckSquare,
-  faUser,
-  faCalendarDays,
-  faDatabase,
-  faPercent,
-  faWindowMaximize
-);
+library.add(faCheckSquare, faUser, faCalendarDays, faPercent);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

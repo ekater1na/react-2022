@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Product } from '../../models';
 
 interface FormErrors {
@@ -354,8 +353,7 @@ export default class Form extends React.Component<FormProps, FormState> {
               this.hasError() ? 'bg-blue-100 py-4 my-6 px-16' : 'bg-green-400 py-4 my-6 px-16'
             }
           >
-            Submit
-            <FontAwesomeIcon className="px-2" icon={['fas', 'plus-square']} />
+            {'Submit ➕'}
           </button>
         </form>
       </div>

@@ -9,7 +9,6 @@ import {
   faPercent,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FormPage } from '../../pages/FormPage';
 import { Product } from '../../models';
 library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
 
@@ -29,12 +28,6 @@ const mockProduct: Product =
 ;
 
 describe('FormCard component', () => {
-  test('renders cards', () => {
-    render(<FormPage />);
-    const elem = screen.getByTestId<HTMLInputElement>('form-page');
-    expect(elem).toBeInTheDocument();
-  });
-
   test('renders card with images', () => {
     render(<FormCard item={mockProduct} />);
     const elem = screen.getByTestId<HTMLInputElement>('form-image');

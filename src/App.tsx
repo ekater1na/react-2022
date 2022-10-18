@@ -6,7 +6,7 @@ import { Header } from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import { AboutUs } from './pages/AboutUs';
 import { NotFoundPage } from './pages/NotFoundPage';
-import { FormPage } from './pages/FormPage';
+import { FormPage } from './pages/FormPage/FormPage';
 
 function App() {
   return (
