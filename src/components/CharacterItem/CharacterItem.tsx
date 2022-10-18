@@ -58,7 +58,7 @@ export class CharacterItem extends React.Component<CharacterProps, CharacterStat
             </span>
 
             {this.state.showModal && (
-              <Modal title="Character details" onClose={this.hideModal} parentToChild={character}>
+              <Modal title="Character details" onClose={this.hideModal}>
                 <Details character={character} />
               </Modal>
             )}

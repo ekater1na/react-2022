@@ -10,12 +10,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FormPage } from '../../pages/FormPage';
+import { Product } from '../../models';
 library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
 
-const formCardValue = [
+const mockProduct: Product =
   {
+    id: '1',
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-    price: 109.95,
+    price: '109.95',
     date: '11.10.2011',
     description:
       'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
@@ -23,8 +25,8 @@ const formCardValue = [
     image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
     notification: true,
     sale: false,
-  },
-];
+  }
+;
 
 describe('FormCard component', () => {
   test('renders cards', () => {
@@ -34,8 +36,7 @@ describe('FormCard component', () => {
   });
 
   test('renders card with images', () => {
-    // @ts-ignore
-    render(<FormCard item={formCardValue} />);
+    render(<FormCard item={mockProduct} />);
     const elem = screen.getByTestId<HTMLInputElement>('form-image');
     expect(elem).toBeInTheDocument();
   });

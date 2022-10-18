@@ -15,8 +15,9 @@ export interface IProduct {
 }
 
 export type Product = {
+  id: string;
   title: string;
-  price: string;
+  price: string ;
   description: string;
   category: string;
   image: string;

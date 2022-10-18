@@ -33,7 +33,7 @@ export class FormPage extends React.Component<FormPageProps, FormPageState> {
         <div className="container mx-auto max-w-8xl">
           <div className="grid grid-cols-4 gap-3" data-testid="product-cards">
             {this.state.formValues &&
-              this.state.formValues.map((item, index) => <FormCard key={index} {...item} />)}
+              this.state.formValues.map((item: Product) => <FormCard key={item.id} item={item} />)}
           </div>
         </div>
       </div>

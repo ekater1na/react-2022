@@ -9,6 +9,7 @@ import {
   faCheckSquare,
   faCalendarDays,
   faDatabase,
+  faPercent,
   faPlusSquare,
   faUser,
   faS,
@@ -23,6 +24,7 @@ library.add(
   faUser,
   faCalendarDays,
   faDatabase,
+  faPercent,
   faWindowMaximize
 );
 

@@ -47,6 +47,7 @@ export default class Form extends React.Component<FormProps, FormState> {
 
     this.state = {
       formValues: {
+        id: '',
         title: '',
         price: '',
         description: '',
@@ -63,6 +64,7 @@ export default class Form extends React.Component<FormProps, FormState> {
   async setFormState() {
     await this.setState({
       formValues: {
+        id: Math.random().toString(),
         title: this.title.current!.value,
         price: this.price.current!.value,
         description: this.description.current!.value,
