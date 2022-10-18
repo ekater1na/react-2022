@@ -36,7 +36,7 @@ export class CharacterItem extends React.Component<CharacterProps, CharacterStat
             <img
               src={character.image}
               alt={character.image}
-              className=" rounded-t-s"
+              className="border-double border-4 border-blue-200"
               onClick={this.showModal}
             />
           </div>

@@ -18,7 +18,11 @@ export function Details({ character }: CharacterProps) {
       </div>
       <div className="my-1 py-2 px-6 rounded flex flex-col items-center mb-2 h-80">
         <div className="h-1/2 flex justify-center">
-          <img src={character.image} alt={character.image} className=" rounded-t-s" />
+          <img
+            src={character.image}
+            alt={character.image}
+            className="border-double border-4 border-white"
+          />
         </div>
         <div className="w-full">
           <p className="text-center truncate text-red-400 text-xl font-bold">{character.name}</p>
