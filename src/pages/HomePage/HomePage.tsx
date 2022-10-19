@@ -51,7 +51,7 @@ export function HomePage() {
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {showList && <CharacterList characters={characters} />}
+        {showList && <CharacterList />}
         <div className="grid grid-cols-5 gap-3" data-testid="cards">
           {!error &&
             characters &&

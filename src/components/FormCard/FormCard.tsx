@@ -34,7 +34,6 @@ export default function FormCard({ item }: FormCardProps) {
         <p className="text-gray-400 text-sm">{item.category}</p>
 
         <div className="px-1 py-2">
-          {/*<FontAwesomeIcon icon={['fas', 'calendar-days']} />*/}
           <span className="px-1 text-sm font-semibold text-blue-700">
             {'📆'}
             {item.date}

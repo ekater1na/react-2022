@@ -5,11 +5,7 @@ import axios, { AxiosError } from 'axios';
 import { Loader } from '../Loader/Loader';
 import { ErrorMessage } from '../Error/Error';
 
-type CharacterCardsProps = {
-  characters: ICharacter[];
-};
-
-export function CharacterList({ characters }: CharacterCardsProps) {
+export function CharacterList() {
   const [startPage, setStartPage] = useState<ICharacter[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

@@ -2,9 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Details } from './Details';
 import { ICharacter } from '../../models';
-import {faCalendarDays, faCheckSquare, faPlusSquare, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faCheckSquare, faPlusSquare, faUser} from "@fortawesome/free-solid-svg-icons";
 import {library} from "@fortawesome/fontawesome-svg-core";
-library.add(faCheckSquare, faPlusSquare, faUser, faCalendarDays);
+library.add(faCheckSquare, faPlusSquare, faUser);
 
 describe('Details component', () => {
   const mockCharacter: ICharacter = {

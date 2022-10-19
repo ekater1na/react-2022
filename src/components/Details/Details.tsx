@@ -37,7 +37,8 @@ export function Details({ character }: CharacterProps) {
         <div className="px-1 py-2">
           <div className="flex items-center justify-between">
             <span className="text-white px-2">
-              <FontAwesomeIcon icon={['fas', 'calendar-days']} />
+              {'📆'}
+
               <span className="px-1 text-sm font-semibold text-blue-200">
                 {character.created.slice(0, 10)}
               </span>
