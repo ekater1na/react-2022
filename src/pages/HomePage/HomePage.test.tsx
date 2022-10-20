@@ -48,7 +48,7 @@ describe('HomePage component', () => {
     const btn = screen.getByTestId('search-btn');
     userEvent.click(btn);
     await waitFor(() => expect(screen.getByText(/request failed/i)).toBeInTheDocument(), {
-      timeout: 1000,
+      timeout: 3000,
     });
   });
 });

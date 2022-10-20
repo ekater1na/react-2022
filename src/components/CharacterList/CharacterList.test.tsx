@@ -9,13 +9,13 @@ library.add(faCheckSquare, faPercent, faCalendarDays);
 
 describe('CharacterList component', () => {
   test('renders list of cards', () => {
-    render(<CharacterList  />);
+    render(<CharacterList query="bob" />);
     const elem = screen.getByTestId<HTMLElement>('character-list');
     expect(elem).toBeInTheDocument();
   });
 
   test('renders cards', () => {
-    render(<CharacterList  />);
+    render(<CharacterList query="bob" />);
     const elem = screen.getAllByTestId<HTMLElement>('cards');
     expect(elem).toHaveLength(1);
   });
