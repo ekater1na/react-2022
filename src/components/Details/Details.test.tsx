@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Details } from './Details';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../models/models';
 import {faCheckSquare, faPlusSquare, faUser} from "@fortawesome/free-solid-svg-icons";
 import {library} from "@fortawesome/fontawesome-svg-core";
 library.add(faCheckSquare, faPlusSquare, faUser);

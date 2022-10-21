@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Product } from '../../models';
+import { Product } from '../../models/models';
 import FormCard from '../../components/FormCard/FormCard';
 import Form from '../../components/Forms/Form';
 

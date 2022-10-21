@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { CharacterItem } from './CharacterItem';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../models/models';
 
 import {
   faCalendarDays,

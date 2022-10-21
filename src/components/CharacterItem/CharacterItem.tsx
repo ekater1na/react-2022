@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../models/models';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from '../Modal/Modal';
 import { Details } from '../Details/Details';

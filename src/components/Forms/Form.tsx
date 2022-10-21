@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product } from '../../models';
+import { Product } from '../../models/models';
 
 interface FormErrors {
   [key: string]: string | boolean | undefined;

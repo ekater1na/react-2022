@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../models/models';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface CharacterProps {

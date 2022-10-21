@@ -1,6 +1,6 @@
 import React from 'react';
 import { CharacterItem } from '../CharacterItem/CharacterItem';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../models/models';
 
 import { useCharacters } from '../../hooks/characters';
 
