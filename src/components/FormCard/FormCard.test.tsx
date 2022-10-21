@@ -9,7 +9,7 @@ import {
   faPercent,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { Product } from '../../models/models';
+import {Product} from "../../models/models";
 library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
 
 const mockProduct: Product =
