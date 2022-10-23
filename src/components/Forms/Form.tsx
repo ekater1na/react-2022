@@ -287,7 +287,7 @@ export default function Form({ setFormValues }: FormProps) {
 
         <button
           type="submit"
-          data-testid="btn-submit"
+          data-testid="button-submit"
           disabled={hasError()}
           className={hasError() ? 'bg-blue-100 py-4 my-6 px-16' : 'bg-green-400 py-4 my-6 px-16'}
         >

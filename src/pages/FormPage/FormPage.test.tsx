@@ -23,7 +23,7 @@ describe('FormPage component', () => {
   test('renders list of cards', async () => {
 
     render(<FormPage />);
-    const onButton = screen.getByTestId<HTMLInputElement>('btn-submit');
+    const onButton = screen.getByTestId<HTMLInputElement>('button-submit');
 
     const title = screen.getByLabelText<HTMLInputElement>(/title/i);
     const category = screen.getByLabelText<HTMLSelectElement>(/category/i);
