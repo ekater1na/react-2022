@@ -38,12 +38,16 @@ export function CharacterItem({ character }: CharacterProps) {
 
         <div className="px-1">
           <span
+            data-testid="gender"
             className={character.gender === 'Male' ? 'text-blue-600 px-3' : 'text-red-600 px-3'}
           >
             <FontAwesomeIcon icon={['fas', 'user']} title="Gender" />
           </span>
 
-          <span className={character.status !== 'alive' ? 'text-green-600' : 'text-gray-300'}>
+          <span
+            data-testid="status"
+            className={character.status === 'Alive' ? 'text-green-600' : 'text-gray-300'}
+          >
             <FontAwesomeIcon icon={['fas', 'check-square']} title="Status" />
           </span>
 

@@ -50,7 +50,7 @@ export function Details({ character }: CharacterProps) {
               <span className="text-white px-2"> Gender:</span>
               <FontAwesomeIcon icon={['fas', 'user']} />
             </span>
-            <span className={character.status !== 'alive' ? 'text-green-600' : 'text-gray-300'}>
+            <span className={character.status === 'Alive' ? 'text-green-600' : 'text-gray-300'}>
               <span className="text-white px-2"> Status:</span>
               <FontAwesomeIcon icon={['fas', 'check-square']} />
             </span>

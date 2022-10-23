@@ -17,6 +17,7 @@ export function Modal({ children, title, onClose }: ModalProps) {
       <div className="px-6 rounded w-[500px] p-5 bg-white absolute top-24 left-1/2 -translate-x-1/2">
         <button
           className="fixed rounded top-3 right-3  bg-gray-300 text-white text-m px-3 py-1"
+          data-testid="close-button"
           onClick={onClose}
         >
           X

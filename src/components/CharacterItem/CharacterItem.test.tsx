@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { CharacterItem } from './CharacterItem';
 import { ICharacter } from '../../models/models';
 
@@ -36,6 +36,30 @@ const mockCharacter: ICharacter = {
   created: '2017-11-04T18:48:46.250Z',
 };
 
+const mockCharacterFemale: ICharacter = {
+  id: 1,
+  name: 'Rick Sanchez',
+  status: 'unknown',
+  species: 'Human',
+  type: '',
+  gender: 'Female',
+  origin: {
+    name: 'Earth (C-137)',
+    url: 'https://rickandmortyapi.com/api/location/1',
+  },
+  location: {
+    name: 'Citadel of Ricks',
+    url: 'https://rickandmortyapi.com/api/location/3',
+  },
+  image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+  episode: [
+    'https://rickandmortyapi.com/api/episode/1',
+    'https://rickandmortyapi.com/api/episode/2',
+  ],
+  url: 'https://rickandmortyapi.com/api/character/1',
+  created: '2017-11-04T18:48:46.250Z',
+};
+
 describe('CharacterItem component', () => {
   test('renders cards', () => {
     render(<CharacterItem character={mockCharacter} />);
@@ -47,5 +71,46 @@ describe('CharacterItem component', () => {
     render(<CharacterItem character={mockCharacter} />);
     const elem = screen.getAllByRole<HTMLInputElement>('img');
     expect(elem).toHaveLength(3);
+  });
+
+  test('shows correct icons', () => {
+    render(<CharacterItem character={mockCharacter} />);
+    const gender = screen.getByTestId<HTMLButtonElement>('gender');
+    expect(gender).toHaveClass('text-blue-600 px-3');
+    expect(gender).not.toHaveClass('text-red-600 px-3');
+
+    const status = screen.getByTestId<HTMLButtonElement>('status');
+    expect(status).toHaveClass('text-green-600');
+    expect(status).not.toHaveClass('text-gray-300');
+  });
+
+  test('shows correct icons', () => {
+    render(<CharacterItem character={mockCharacterFemale} />);
+    const gender = screen.getByTestId<HTMLButtonElement>('gender');
+    expect(gender).not.toHaveClass('text-blue-600 px-3');
+    expect(gender).toHaveClass('text-red-600 px-3');
+
+    const status = screen.getByTestId<HTMLButtonElement>('status');
+    expect(status).not.toHaveClass('text-green-600');
+    expect(status).toHaveClass('text-gray-300');
+  });
+
+  test('shows modal', () => {
+    render(<CharacterItem character={mockCharacter} />);
+    const elem = screen.getAllByRole<HTMLButtonElement>('img');
+    fireEvent.click(elem[0]);
+    const modal = screen.getByTestId<HTMLInputElement>('modal');
+    expect(modal).toBeInTheDocument();
+  });
+
+  test('hides modal', () => {
+    render(<CharacterItem character={mockCharacter} />);
+    const elem = screen.getAllByRole<HTMLButtonElement>('img');
+    fireEvent.click(elem[0]);
+    const modal = screen.getByTestId<HTMLInputElement>('modal');
+    expect(modal).toBeInTheDocument();
+    const button = screen.getByTestId<HTMLInputElement>('close-button');
+    fireEvent.click(button);
+    expect(modal).not.toBeInTheDocument();
   });
 });
