@@ -27,6 +27,22 @@ describe('Forms component', () => {
     expect(elem).not.toBeChecked();
   });
 
+  test('renders working select', async () => {
+    render(<Form setFormValues={setFormValues} />);
+    const elem = screen.getByLabelText<HTMLSelectElement>(/category/i);
+    expect(elem.value).toBe('')
+    fireEvent.change(elem, { target: { value: 'electronics' } });
+    expect(elem.value).toBe('electronics')
+  })
+
+  test('renders working date-picker', async () => {
+    render(<Form setFormValues={setFormValues} />);
+    const elem = screen.getByLabelText<HTMLSelectElement>(/date/i);
+    expect(elem.value).toBe('')
+    fireEvent.change(elem, {target: {value: '2021-05-01'}});
+    expect(elem.value).toBe('2021-05-01')
+  })
+
   test('form submit not disabled', async () => {
     render(<Form setFormValues={setFormValues} />);
     const elem = await screen.findByTestId('btn-submit');
