@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 type SearchBarProps = {
   searchValue: string;
@@ -7,7 +8,10 @@ type SearchBarProps = {
 };
 
 export default function ({ searchValue, onSearchBarChange, onSearchBarSubmit }: SearchBarProps) {
+  const [name, setName] = useLocalStorage('name', '');
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setName(event.target.value);
     onSearchBarChange(event.target.value);
   };
 
@@ -17,6 +21,11 @@ export default function ({ searchValue, onSearchBarChange, onSearchBarSubmit }: 
       onSearchBarSubmit();
     }
   };
+
+  useEffect(() => {
+    // storing input name
+    localStorage.setItem('name', JSON.stringify(name));
+  }, [name]);
 
   return (
     <div className="bg-blue-100 flex flex-col justify-center">

@@ -16,7 +16,8 @@ export function FormPage() {
       <Form setFormValues={addValue} />
       <div className="container mx-auto max-w-8xl">
         <div className="grid grid-cols-4 gap-3" data-testid="form-cards">
-          {values && values.map((item: Product) => <FormCard key={item.id} item={item} />)}
+          {values &&
+            values.map((item: Product, index: number) => <FormCard key={index} item={item} />)}
         </div>
       </div>
     </div>

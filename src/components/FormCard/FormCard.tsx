@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type FormCardProps = {
   item: {
-    id: string;
     title: string;
     category: string;
     description: string;

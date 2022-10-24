@@ -14,7 +14,6 @@ library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
 
 const mockProduct: Product =
   {
-    id: '1',
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
     price: '109.95',
     date: '11.10.2011',
@@ -29,7 +28,7 @@ const mockProduct: Product =
 
 describe('FormCard component', () => {
   test('renders card with images', () => {
-    render(<FormCard item={mockProduct} />);
+    render(<FormCard item={mockProduct} key='1'/>);
     const elem = screen.getByTestId<HTMLInputElement>('form-image');
     expect(elem).toBeInTheDocument();
   });

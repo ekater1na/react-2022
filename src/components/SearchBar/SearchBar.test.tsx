@@ -8,7 +8,9 @@ const onSubmit = jest.fn();
 
 describe('SearchBar component', () => {
   it('focus input', () => {
-    render(<SearchBar searchValue="" onSearchBarChange={onChange} onSearchBarSubmit={onSubmit} />);
+    render(
+      <SearchBar searchValue="rick" onSearchBarChange={onChange} onSearchBarSubmit={onSubmit} />
+    );
     const input = screen.getByPlaceholderText(/enter/i);
     expect(input).not.toHaveFocus();
     input.focus();
@@ -35,10 +37,8 @@ describe('LocalStorage', () => {
     );
     const input = screen.getByPlaceholderText(/enter/i);
 
-    localStorageMock.setItem('Search', 'LS Item');
+    localStorageMock.setItem('search', 'item');
     unmount();
     expect(input).toBeTruthy();
   });
-
-
 });

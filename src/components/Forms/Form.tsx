@@ -13,9 +13,9 @@ export default function Form({ setFormValues }: FormProps) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
-      id: Math.random().toString(),
       title: '',
       price: '',
       description: '',
@@ -27,72 +27,18 @@ export default function Form({ setFormValues }: FormProps) {
     },
   });
 
-  // const setFormState = async() => {
-  //   await this.setState({
-  //     formValues: {
-  //       id: Math.random().toString(),
-  //       title: this.title.current!.value,
-  //       price: this.price.current!.value,
-  //       description: this.description.current!.value,
-  //       image:
-  //         (this.image.current?.files as FileList)[0] !== undefined
-  //           ? URL.createObjectURL((this.image.current?.files as FileList)[0])
-  //           : require(`../../assets/default.jpg`),
-  //       category: this.category.current!.value,
-  //       date: this.date.current!.value,
-  //       sale: this.sale.current!.checked,
-  //       notification: this.notification.current!.checked,
-  //     },
-  //     errors: {},
-  //   });
-  // }
-  //
-  //  const validateField = async (fieldName: string) => {
-  //   if (!this.state.formValues[fieldName]) {
-  //     await this.setState({
-  //       errors: { ...this.state.errors, [fieldName]: this.state.formValues[fieldName] },
-  //     });
-  //   }
-  // }
-  //
-  // const validate = async () => {
-  //   await this.setFormState();
-  //   await this.validateField('title');
-  //   await this.validateField('category');
-  //   await this.validateField('description');
-  //   await this.validateField('image');
-  //   await this.validateField('date');
-  //   await this.validateField('price');
-  // }
-  //
+  const onSubmit = (data: Product) => {
+    setFormValues(data);
+    reset();
+  };
 
   const hasError = () => {
     return Object.keys(errors).length !== 0;
   };
 
-  //  const handleSubmit = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   await this.validate();
-  //
-  //   if (Object.keys(this.state.errors).length === 0) {
-  //     this.props.setFormValues(this.state.formValues);
-  //
-  //     this.form.current?.reset();
-  //     this.notification.current!.checked = false;
-  //     this.sale.current!.checked = false;
-  //     this.date.current!.value = '';
-  //   }
-  // }
-
   return (
     <div className="container mx-auto sm:max-w-2xl my-4">
-      <form
-        className="w-full"
-        onSubmit={handleSubmit((data) => {
-          setFormValues(data);
-        })}
-        data-testid="form"
-      >
+      <form className="w-full" onSubmit={handleSubmit(onSubmit)} data-testid="form">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -162,6 +108,7 @@ export default function Form({ setFormValues }: FormProps) {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="description"
+              data-testid="description"
               placeholder="Write description"
               type="text"
               {...register('description', { required: true })}
@@ -184,7 +131,6 @@ export default function Form({ setFormValues }: FormProps) {
               id="image"
               placeholder="Please choose an image"
               type="file"
-              // onChange={onSubmitFile}
               {...register('image')}
             />
             {errors.image && <p className="text-red-500 text-xs italic">{errorMessage}</p>}
@@ -287,6 +233,7 @@ export default function Form({ setFormValues }: FormProps) {
 
         <button
           type="submit"
+          value="submit"
           data-testid="button-submit"
           disabled={hasError()}
           className={hasError() ? 'bg-blue-100 py-4 my-6 px-16' : 'bg-green-400 py-4 my-6 px-16'}
