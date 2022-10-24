@@ -37,11 +37,17 @@ export default function FormCard({ item }: FormCardProps) {
             {item.date}
           </span>
 
-          <span className={item.notification ? 'text-green-600' : 'text-gray-300'}>
+          <span
+            data-testid="notification"
+            className={item.notification ? 'text-green-600' : 'text-gray-300'}
+          >
             <FontAwesomeIcon icon={['fas', 'check-square']} title="promotion" />
           </span>
 
-          <span className={item.sale ? 'text-green-600 px-3' : 'text-gray-300 px-3'}>
+          <span
+            data-testid="sale"
+            className={item.sale ? 'text-green-600 px-3' : 'text-gray-300 px-3'}
+          >
             <FontAwesomeIcon icon={['fas', 'percent']} title="sale" />
           </span>
         </div>
