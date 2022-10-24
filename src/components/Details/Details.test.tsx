@@ -10,10 +10,10 @@ describe('Details component', () => {
   const mockCharacter: ICharacter = {
     id: 1,
     name: 'Rick Sanchez',
-    status: 'Alive',
+    status: 'Died',
     species: 'Human',
     type: '',
-    gender: 'Male',
+    gender: 'Female',
     origin: {
       name: 'Earth (C-137)',
       url: 'https://rickandmortyapi.com/api/location/1',
@@ -35,5 +35,14 @@ describe('Details component', () => {
     render(<Details character={mockCharacter} />);
     const elem = screen.getByTestId<HTMLInputElement>('details');
     expect(elem).toBeInTheDocument();
+  });
+
+  test('renders correct icons', () => {
+    render(<Details character={mockCharacter} />);
+    const gender = screen.getByTestId<HTMLInputElement>('gender');
+    expect(gender).toHaveClass('text-red-600 px-3');
+
+    const status = screen.getByTestId<HTMLInputElement>('status');
+    expect(status).toHaveClass('text-gray-300');
   });
 });

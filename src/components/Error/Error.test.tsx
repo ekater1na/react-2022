@@ -7,7 +7,7 @@ describe('Error component', () => {
   test('renders error', () => {
       const error='error'
     render(<ErrorMessage error={error} />);
-    const elem = screen.getByTestId<HTMLInputElement>('error');
+    const elem = screen.getByTestId<HTMLInputElement>('error-page');
     expect(elem).toBeInTheDocument();
   });
 });
