@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ekater1na-REACT2022Q3/static/css/main.fbc65405.css",
-    "main.js": "/ekater1na-REACT2022Q3/static/js/main.d873a1f4.js",
+    "main.css": "/ekater1na-REACT2022Q3/static/css/main.d2840841.css",
+    "main.js": "/ekater1na-REACT2022Q3/static/js/main.f2110aaf.js",
     "static/js/787.9d469aea.chunk.js": "/ekater1na-REACT2022Q3/static/js/787.9d469aea.chunk.js",
     "index.html": "/ekater1na-REACT2022Q3/index.html",
-    "main.fbc65405.css.map": "/ekater1na-REACT2022Q3/static/css/main.fbc65405.css.map",
-    "main.d873a1f4.js.map": "/ekater1na-REACT2022Q3/static/js/main.d873a1f4.js.map",
+    "main.d2840841.css.map": "/ekater1na-REACT2022Q3/static/css/main.d2840841.css.map",
+    "main.f2110aaf.js.map": "/ekater1na-REACT2022Q3/static/js/main.f2110aaf.js.map",
     "787.9d469aea.chunk.js.map": "/ekater1na-REACT2022Q3/static/js/787.9d469aea.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fbc65405.css",
-    "static/js/main.d873a1f4.js"
+    "static/css/main.d2840841.css",
+    "static/js/main.f2110aaf.js"
   ]
 }
