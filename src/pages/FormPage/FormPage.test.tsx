@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {act, fireEvent, render, screen} from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { faCalendarDays, faCheckSquare, faPercent } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FormPage } from './FormPage';
@@ -21,7 +21,6 @@ describe('FormPage component', () => {
   });
 
   test('renders list of cards', async () => {
-
     render(<FormPage />);
     const onButton = screen.getByTestId<HTMLInputElement>('button-submit');
 
@@ -32,13 +31,13 @@ describe('FormPage component', () => {
     const price = screen.getByLabelText<HTMLInputElement>(/price/i);
 
     await act(() => {
-      fireEvent.change(title, {target: {value: 'electronics'}});
-      fireEvent.change(category, {target: {value: 'electronics'}});
-      fireEvent.change(description, {target: {value: '23'}});
-      fireEvent.change(date, {target: {value: '2021-05-01'}});
-      fireEvent.change(price, {target: {value: 23}});
+      fireEvent.change(title, { target: { value: 'electronics' } });
+      fireEvent.change(category, { target: { value: 'electronics' } });
+      fireEvent.change(description, { target: { value: '23' } });
+      fireEvent.change(date, { target: { value: '2021-05-01' } });
+      fireEvent.change(price, { target: { value: 23 } });
       fireEvent.click(onButton);
-    })
+    });
 
     const elem = screen.getByTestId<HTMLInputElement>('form-cards');
     expect(elem).toBeInTheDocument();

@@ -4,7 +4,6 @@ import Form from './Form';
 
 const setFormValues = jest.fn();
 
-
 describe('Forms component', () => {
   test('renders form', async () => {
     render(<Form setFormValues={setFormValues} />);
