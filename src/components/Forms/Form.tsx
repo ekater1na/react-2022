@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../../models/models';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import moment from 'moment/moment';
 
 interface FormProps {
   setFormValues: (value: Product) => void;
@@ -14,22 +15,21 @@ export default function Form({ setFormValues }: FormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<Product>({
     defaultValues: {
+      id: moment().toString(),
       title: '',
       price: '',
       description: '',
-      image: '',
       category: '',
       date: '',
-      sale: false,
       notification: false,
     },
   });
 
-  const onSubmit = (data: Product) => {
+  const onSubmit: SubmitHandler<Product> = (data: Product) => {
     setFormValues(data);
-    reset();
+    setTimeout(reset, 500);
   };
 
   const hasError = () => {
@@ -133,7 +133,6 @@ export default function Form({ setFormValues }: FormProps) {
               type="file"
               {...register('image')}
             />
-            {errors.image && <p className="text-red-500 text-xs italic">{errorMessage}</p>}
           </div>
 
           <div className="w-full md:w-1/3 px-3">
@@ -189,14 +188,15 @@ export default function Form({ setFormValues }: FormProps) {
             <div className="form-check">
               <input
                 data-testid="notification"
-                // onChange={this.handleChange}
                 className="px-3-2 w-4 h-4 text-blue-400 bg-gray-100 rounded border-gray-300"
                 type="checkbox"
-                defaultChecked={true}
                 id="notification"
                 {...register('notification', { required: true })}
               />
-              <label className="form-check-label ml-2 text-gray-800" htmlFor="notification">
+              <label
+                htmlFor="notification"
+                className={errors.notification ? 'text-red-600 ml-2' : 'text-gray-800 ml-2'}
+              >
                 Add notifications for customers about promo
               </label>
             </div>
@@ -216,8 +216,7 @@ export default function Form({ setFormValues }: FormProps) {
                     id="sale"
                     type="checkbox"
                     className="sr-only peer"
-                    defaultChecked={true}
-                    {...register('sale', { required: true })}
+                    {...register('sale')}
                     readOnly={true}
                   />
                   <div

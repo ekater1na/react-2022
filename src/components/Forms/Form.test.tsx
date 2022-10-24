@@ -4,6 +4,7 @@ import Form from './Form';
 
 const setFormValues = jest.fn();
 
+
 describe('Forms component', () => {
   test('renders form', async () => {
     render(<Form setFormValues={setFormValues} />);
@@ -22,9 +23,9 @@ describe('Forms component', () => {
   test('renders working checkbox', async () => {
     render(<Form setFormValues={setFormValues} />);
     const elem = await screen.findByTestId('notification');
-    expect(elem).toBeChecked();
-    fireEvent.click(elem);
     expect(elem).not.toBeChecked();
+    fireEvent.click(elem);
+    expect(elem).toBeChecked();
   });
 
   test('renders working select', async () => {
@@ -44,19 +45,15 @@ describe('Forms component', () => {
   });
 
   // test('shows error for empty required field', async () => {
-  //   render(<Form setFormValues={setFormValues} />);
-  //   const form = screen.getByTestId('form');
-  //
+  //   render(<Form setFormValues={( emptyData) => {}} />);
   //   const button = screen.getByTestId('button-submit');
+  //   fireEvent.click(button);
+  //   // fireEvent.submit(button);
   //
-  //   const title = screen.getByTestId('title');
-  //   fireEvent.change(title, {target: {value: '12'}});
-  //
-  //   await fireEvent.submit(form);
   //   // expect(button).toBeDisabled();
-  //
+  //   // screen.debug();
   //   const errorMessage = screen.getByTestId('title-error');
-  //   await expect(errorMessage).toBeInTheDocument();
+  //   expect(errorMessage).toBeInTheDocument();
   // });
 
   test('form submit not disabled', async () => {
