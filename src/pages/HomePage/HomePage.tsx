@@ -3,7 +3,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { CharacterList } from 'components/CharacterList/CharacterList';
 import { Loader } from '../../components/Loader/Loader';
 import { ErrorMessage } from '../../components/Error/Error';
-import { useCharacters } from '../../hooks/characters';
+import { useCharacters } from '../../hooks/useCharacters';
 
 export function HomePage() {
   const [searchValue, setSearchValue] = useState('');

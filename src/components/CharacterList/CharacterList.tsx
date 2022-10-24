@@ -2,7 +2,7 @@ import React from 'react';
 import { CharacterItem } from '../CharacterItem/CharacterItem';
 import { ICharacter } from '../../models/models';
 
-import { useCharacters } from '../../hooks/characters';
+import { useCharacters } from '../../hooks/useCharacters';
 
 interface CharacterListProps {
   query: string | number;
