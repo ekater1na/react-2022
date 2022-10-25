@@ -17,7 +17,7 @@ export default function Form({ setFormValues }: FormProps) {
     reset,
   } = useForm<Product>({
     defaultValues: {
-      id: moment().toString(),
+      id: '',
       title: '',
       price: '',
       description: '',
@@ -28,8 +28,14 @@ export default function Form({ setFormValues }: FormProps) {
   });
 
   const onSubmit: SubmitHandler<Product> = (data: Product) => {
-    setFormValues(data);
-    setTimeout(reset, 500);
+    setFormValues({
+      ...data,
+      id: moment().toString(),
+      image: data.image[0]
+        ? URL.createObjectURL(data.image[0])
+        : require(`../../assets/default.jpg`),
+    });
+    reset();
   };
 
   const hasError = () => {

@@ -8,22 +8,23 @@ type FormCardProps = {
     description: string;
     price: string;
     date: string;
-    image: FileList;
+    image: FileList | string;
     notification: boolean;
     sale: boolean;
   };
 };
 
 export default function FormCard({ item }: FormCardProps) {
-  const src = item.image[0]
-    ? URL.createObjectURL(item.image[0])
-    : require(`../../assets/default.jpg`);
-
   return (
     <div className="container mx-auto" data-testid="form-card">
       <div className="border my-1 py-2 px-6 rounded flex flex-col items-center mb-2 h-64">
         <div className="h-1/2 flex justify-center">
-          <img src={src} alt={item.title} className=" rounded-t-s" data-testid="form-image" />
+          <img
+            src={item.image as string}
+            alt={item.title}
+            className=" rounded-t-s"
+            data-testid="form-image"
+          />
         </div>
         <div className="w-full">
           <p className="text-center truncate text-red-500 text-xl font-bold">{item.title}</p>

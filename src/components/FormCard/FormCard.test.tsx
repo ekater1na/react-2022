@@ -13,6 +13,7 @@ import { Product } from '../../models/models';
 library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
 
 const mockProduct: Product = {
+  id: '1',
   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
   price: '109.95',
   date: '11.10.2011',
@@ -25,6 +26,7 @@ const mockProduct: Product = {
 };
 
 const mockProductTest: Product = {
+  id: '2',
   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
   price: '109.95',
   date: '11.10.2011',
