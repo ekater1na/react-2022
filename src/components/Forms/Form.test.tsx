@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import Form from './Form';
 
 const setFormValues = jest.fn();
@@ -43,17 +43,25 @@ describe('Forms component', () => {
     expect(elem.value).toBe('2021-05-01');
   });
 
-  // test('shows error for empty required field', async () => {
-  //   render(<Form setFormValues={( emptyData) => {}} />);
-  //   const button = screen.getByTestId('button-submit');
-  //   fireEvent.click(button);
-  //   // fireEvent.submit(button);
-  //
-  //   // expect(button).toBeDisabled();
-  //   // screen.debug();
-  //   const errorMessage = screen.getByTestId('title-error');
-  //   expect(errorMessage).toBeInTheDocument();
-  // });
+  test('shows error for empty required field', async () => {
+    render(<Form setFormValues={() => {}} />);
+    const button = screen.getByTestId('button-submit');
+    await act(() => {
+      fireEvent.click(button);
+    });
+    const errorMessage = screen.getByTestId('title-error');
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  test('reset data after form submit', async () => {
+    render(<Form setFormValues={setFormValues} />);
+    const elem = await screen.findByTestId<HTMLElement>('button-submit');
+    await act(() => {
+      fireEvent.click(elem);
+    });
+    const input = await screen.findByTestId<HTMLInputElement>('title');
+    await expect(input.value).toBe('');
+  });
 
   test('form submit not disabled', async () => {
     render(<Form setFormValues={setFormValues} />);
