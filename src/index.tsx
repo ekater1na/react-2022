@@ -15,7 +15,7 @@ library.add(faCheckSquare, faUser, faCalendarDays, faPercent);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <BrowserRouter basename="/ekater1na-REACT2022Q3">
+  <BrowserRouter>
     <App />
   </BrowserRouter>
 );
