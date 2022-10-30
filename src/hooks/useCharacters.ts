@@ -9,8 +9,8 @@ export function useCharacters(searchValue: string | number) {
   const [error, setError] = useState('');
 
   const fetchCharacters = async (searchValue: string | number) => {
-    const URL = process.env.URL
-      ? process.env.URL
+    const URL = process.env.API_URL
+      ? process.env.API_URL
       : 'https:/rickandmortyapi.com/api/character/?name=';
     try {
       setError('');
