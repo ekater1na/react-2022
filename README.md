@@ -2,9 +2,9 @@
 
 Private repository for @ekater1na
 
-[Task 2 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module02)
+[Task 4 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module04)
 
-[Deploy](https://rolling-scopes-school.github.io/ekater1na-REACT2022Q3)
+[Deploy](https://ekater1na.github.io/react-2022/)
 
 # Getting Started with Create React App
 
