@@ -10,19 +10,17 @@ export function useCharacters(searchValue: string | number) {
   const fetchCharacters = async (searchValue: string | number) => {
     const URL = process.env.API_URL
       ? process.env.API_URL
-      : 'https:/rickandmortyapi.com/api/character/?name=';
+      : 'https://rickandmortyapi.com/api/character/?name=';
 
     try {
       setError('');
       setLoading(true);
 
-      axios.defaults.baseURL = '/';
-      console.log('axios.defaults.baseURL', axios.defaults.baseURL);
-
-      console.log('URL', URL);
-
-      const response = await axios.get<IResponse>(URL + `${searchValue}`);
+      const instance = axios.create();
+      const response = await instance.get<IResponse>(URL + `${searchValue}`);
       const dataSet = response.data.results;
+      console.log('response', response);
+
       setCharacters(dataSet);
       setLoading(false);
     } catch (e: unknown) {
