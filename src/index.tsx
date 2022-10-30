@@ -12,7 +12,7 @@ library.add(faCheckSquare, faPercent);
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <Provider store={store}>
-    <BrowserRouter basename="/ekater1na-REACT2022Q3">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>

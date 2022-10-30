@@ -1,7 +1,6 @@
 {
   "name": "ekater1na-react2022q3",
   "version": "0.1.0",
-  "homepage": "https://rolling-scopes-school.github.io/ekater1na-REACT2022Q3",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
