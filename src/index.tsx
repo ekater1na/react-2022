@@ -28,7 +28,7 @@ library.add(
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <BrowserRouter basename="/ekater1na-REACT2022Q3">
+  <BrowserRouter>
     <App />
   </BrowserRouter>
 );
