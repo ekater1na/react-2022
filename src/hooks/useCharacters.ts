@@ -8,12 +8,16 @@ export function useCharacters(searchValue: string | number) {
   const [error, setError] = useState('');
 
   const fetchCharacters = async (searchValue: string | number) => {
+    const URL = process.env.API_URL
+      ? process.env.API_URL
+      : 'https://rickandmortyapi.com/api/character/?name=';
+
     try {
       setError('');
       setLoading(true);
-      const response = await axios.get<IResponse>(
-        `https:/rickandmortyapi.com/api/character/?name=${searchValue}`
-      );
+      const instance = axios.create();
+      const response = await instance.get<IResponse>(URL + `${searchValue}`);
+
       const dataSet = response.data.results;
       setCharacters(dataSet);
       setLoading(false);
@@ -26,7 +30,7 @@ export function useCharacters(searchValue: string | number) {
 
   useEffect(() => {
     fetchCharacters(searchValue);
-  }, []);
+  }, [searchValue]);
 
   return { characters, error, loading, fetchCharacters };
 }

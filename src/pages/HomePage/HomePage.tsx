@@ -8,16 +8,13 @@ import { useCharacters } from '../../hooks/useCharacters';
 export function HomePage() {
   const [searchValue, setSearchValue] = useState('');
   const { error, loading, fetchCharacters } = useCharacters(searchValue);
-  const [changePage, setChangePage] = useState(true);
 
   const handleSearchBarChange = (value: string) => {
     setSearchValue(value);
-    setChangePage(false);
   };
 
   const handleSearchBarSubmit = () => {
     fetchCharacters(searchValue);
-    setChangePage(true);
   };
 
   return (
@@ -30,8 +27,7 @@ export function HomePage() {
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {!error && !changePage && <CharacterList query="" />}
-        {!error && changePage && <CharacterList query={searchValue} />}
+        {!error && <CharacterList query={searchValue} />}
       </div>
     </div>
   );
