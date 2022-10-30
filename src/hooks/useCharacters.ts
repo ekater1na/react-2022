@@ -1,7 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { ICharacter, IResponse } from '../models/models';
-import * as dotenv from 'dotenv';
 
 export function useCharacters(searchValue: string | number) {
   const [characters, setCharacters] = useState<ICharacter[]>([]);
@@ -15,6 +14,8 @@ export function useCharacters(searchValue: string | number) {
     try {
       setError('');
       setLoading(true);
+      console.log('URL', URL);
+
       const response = await axios.get<IResponse>(URL + `${searchValue}`);
       const dataSet = response.data.results;
       setCharacters(dataSet);
@@ -28,7 +29,7 @@ export function useCharacters(searchValue: string | number) {
 
   useEffect(() => {
     fetchCharacters(searchValue);
-  }, []);
+  }, [searchValue]);
 
   return { characters, error, loading, fetchCharacters };
 }
