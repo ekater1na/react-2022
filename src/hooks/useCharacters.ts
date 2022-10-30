@@ -19,7 +19,6 @@ export function useCharacters(searchValue: string | number) {
       const instance = axios.create();
       const response = await instance.get<IResponse>(URL + `${searchValue}`);
       const dataSet = response.data.results;
-      console.log('response', response);
 
       setCharacters(dataSet);
       setLoading(false);
