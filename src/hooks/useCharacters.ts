@@ -11,9 +11,14 @@ export function useCharacters(searchValue: string | number) {
     const URL = process.env.API_URL
       ? process.env.API_URL
       : 'https:/rickandmortyapi.com/api/character/?name=';
+
     try {
       setError('');
       setLoading(true);
+
+      axios.defaults.baseURL = '/';
+      console.log('axios.defaults.baseURL', axios.defaults.baseURL);
+
       console.log('URL', URL);
 
       const response = await axios.get<IResponse>(URL + `${searchValue}`);
