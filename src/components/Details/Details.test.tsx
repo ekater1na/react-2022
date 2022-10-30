@@ -32,13 +32,13 @@ describe('Details component', () => {
   };
 
   test('renders details', () => {
-    render(<Details character={mockCharacter} />);
+    render(<Details character={mockCharacter} onClose={() => false}/>);
     const elem = screen.getByTestId<HTMLInputElement>('details');
     expect(elem).toBeInTheDocument();
   });
 
   test('renders correct icons', () => {
-    render(<Details character={mockCharacter} />);
+    render(<Details character={mockCharacter} onClose={() => false} />);
     const gender = screen.getByTestId<HTMLInputElement>('gender');
     expect(gender).toHaveClass('text-red-600 px-3');
 
