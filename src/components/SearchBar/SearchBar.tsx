@@ -28,8 +28,8 @@ export default function ({ searchValue, onSearchBarChange, onSearchBarSubmit }: 
   }, [name]);
 
   return (
-    <div className="bg-blue-100 flex flex-col justify-center">
-      <div className="relative p-4 w-full sm:max-w-2xl sm:mx-auto">
+    <div className="bg-blue-200 flex flex-col justify-center">
+      <div className="relative p-1 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-3">
           <form
             role="form"

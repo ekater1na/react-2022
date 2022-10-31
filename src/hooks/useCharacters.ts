@@ -7,6 +7,9 @@ export function useCharacters(searchValue: string | number) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const [totalCount, setTotalCount] = useState(0);
+  const [pages, setPages] = useState(0);
+
   const fetchCharacters = async (searchValue: string | number) => {
     const URL = process.env.API_URL
       ? process.env.API_URL
@@ -20,6 +23,13 @@ export function useCharacters(searchValue: string | number) {
 
       const dataSet = response.data.results;
       setCharacters(dataSet);
+
+      const count = response.data.info.count;
+      setTotalCount(count);
+
+      const pages = response.data.info.pages;
+      setPages(pages);
+
       setLoading(false);
     } catch (e: unknown) {
       const error = e as AxiosError;
@@ -32,5 +42,5 @@ export function useCharacters(searchValue: string | number) {
     fetchCharacters(searchValue);
   }, [searchValue]);
 
-  return { characters, error, loading, fetchCharacters };
+  return { characters, error, loading, fetchCharacters, totalCount, pages };
 }
