@@ -19,4 +19,14 @@ describe('CharacterList component', () => {
     const elem = screen.getAllByTestId<HTMLElement>('cards');
     expect(elem).toHaveLength(1);
   });
+
+  // test('shows details page', async () => {
+  //   render(<CharacterList query="bob" />);
+  //   const elem = screen.getByTestId<HTMLElement>('character-item');
+  //   await act(() => {
+  //     fireEvent.click(elem);
+  //   });
+  //   const modal = screen.getByTestId<HTMLElement>('details');
+  //   expect(modal).toBeInTheDocument();
+  // });
 });

@@ -11,6 +11,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 library.add(faCheckSquare, faPlusSquare, faUser, faCalendarDays);
 
 describe('HomePage component', () => {
@@ -31,7 +32,13 @@ describe('HomePage component', () => {
   });
 
   it('fetches data', async () => {
-    render(<HomePage />);
+    render(
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<HomePage />}></Route>
+          </Routes>
+        </BrowserRouter>
+    );
     const input = screen.getByPlaceholderText(/enter/i);
     userEvent.type(input, 'rick');
     const btn = screen.getByTestId('search-btn');

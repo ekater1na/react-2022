@@ -1,24 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import { ICharacter } from '../../models/models';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Modal } from '../Modal/Modal';
-import { Details } from '../Details/Details';
 
 interface CharacterProps {
   character: ICharacter;
 }
 
 export function CharacterItem({ character }: CharacterProps) {
-  const [modal, setModal] = useState(false);
-
-  const showModal = () => {
-    setModal(true);
-  };
-
-  const hideModal = () => {
-    setModal(false);
-  };
-
   return (
     <div className="container mx-auto" data-testid="character-item">
       <div className="border py-2 px-6 rounded flex flex-col items-center mb-1 h-64">
@@ -27,7 +16,6 @@ export function CharacterItem({ character }: CharacterProps) {
             src={character.image}
             alt={character.image}
             className="border-double border-4 border-blue-200"
-            onClick={showModal}
           />
         </div>
         <div className="w-full">
@@ -50,12 +38,6 @@ export function CharacterItem({ character }: CharacterProps) {
           >
             <FontAwesomeIcon icon={['fas', 'check-square']} title="Status" />
           </span>
-
-          {modal && (
-            <Modal title="Character details" onClose={hideModal}>
-              <Details character={character} />
-            </Modal>
-          )}
         </div>
       </div>
     </div>

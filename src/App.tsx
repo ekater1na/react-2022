@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AboutUs } from './pages/AboutUs';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { FormPage } from './pages/FormPage/FormPage';
+import { Details } from './components/Details/Details';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/character/:id" element={<Details />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="forms" element={<FormPage />} />
         <Route path="*" element={<NotFoundPage />} />

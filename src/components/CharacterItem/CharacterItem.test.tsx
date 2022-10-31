@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { CharacterItem } from './CharacterItem';
 import { ICharacter } from '../../models/models';
 
@@ -93,24 +93,5 @@ describe('CharacterItem component', () => {
     const status = screen.getByTestId<HTMLButtonElement>('status');
     expect(status).not.toHaveClass('text-green-600');
     expect(status).toHaveClass('text-gray-300');
-  });
-
-  test('shows modal', () => {
-    render(<CharacterItem character={mockCharacter} />);
-    const elem = screen.getAllByRole<HTMLButtonElement>('img');
-    fireEvent.click(elem[0]);
-    const modal = screen.getByTestId<HTMLInputElement>('modal');
-    expect(modal).toBeInTheDocument();
-  });
-
-  test('hides modal', () => {
-    render(<CharacterItem character={mockCharacter} />);
-    const elem = screen.getAllByRole<HTMLButtonElement>('img');
-    fireEvent.click(elem[0]);
-    const modal = screen.getByTestId<HTMLInputElement>('modal');
-    expect(modal).toBeInTheDocument();
-    const button = screen.getByTestId<HTMLInputElement>('close-button');
-    fireEvent.click(button);
-    expect(modal).not.toBeInTheDocument();
   });
 });
