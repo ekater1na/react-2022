@@ -9,7 +9,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 
 export function HomePage() {
   const [searchValue, setSearchValue] = useState('');
-  const { error, loading, fetchCharacters, totalCount, pages } = useCharacters(searchValue);
+  const { error, loading, fetchCharacters, totalCount } = useCharacters(searchValue);
 
   const handleSearchBarChange = (value: string) => {
     setSearchValue(value);
@@ -26,7 +26,7 @@ export function HomePage() {
         onSearchBarChange={handleSearchBarChange}
         onSearchBarSubmit={handleSearchBarSubmit}
       />
-      <PageOptions totalCount={totalCount} pages={pages}/>
+      <PageOptions totalCount={totalCount} />
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
