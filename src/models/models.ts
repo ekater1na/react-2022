@@ -12,13 +12,15 @@ export type Product = {
 };
 
 export interface IResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string;
-    prev: string;
-  };
+  info: IInfo;
   results: ICharacter[];
+}
+
+export interface IInfo {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string | null;
 }
 
 export interface ICharacter {

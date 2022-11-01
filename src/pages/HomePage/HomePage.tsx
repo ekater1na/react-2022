@@ -9,14 +9,16 @@ import { Pagination } from '../../components/Pagination/Pagination';
 
 export function HomePage() {
   const [searchValue, setSearchValue] = useState('');
-  const { error, loading, fetchCharacters, totalCount } = useCharacters(searchValue);
+
+  const { error, loading, fetchedData, pagesNumber, updatePagesNumber, info } =
+    useCharacters(searchValue);
 
   const handleSearchBarChange = (value: string) => {
     setSearchValue(value);
   };
 
   const handleSearchBarSubmit = () => {
-    fetchCharacters(searchValue);
+    return;
   };
 
   return (
@@ -25,14 +27,17 @@ export function HomePage() {
         searchValue={searchValue}
         onSearchBarChange={handleSearchBarChange}
         onSearchBarSubmit={handleSearchBarSubmit}
+        updatePagesNumber={updatePagesNumber}
       />
-      <PageOptions totalCount={totalCount} />
+      {info && <PageOptions totalCount={info.pages} />}
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {!error && <CharacterList query={searchValue} />}
+        {!error && fetchedData && <CharacterList characters={fetchedData?.results} />}
       </div>
-      <Pagination />
+      {info && (
+        <Pagination pagesNumber={pagesNumber} info={info} updatePagesNumber={updatePagesNumber} />
+      )}
     </div>
   );
 }

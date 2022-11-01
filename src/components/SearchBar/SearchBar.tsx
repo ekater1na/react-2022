@@ -5,14 +5,21 @@ type SearchBarProps = {
   searchValue: string;
   onSearchBarChange: (value: string) => void;
   onSearchBarSubmit: () => void;
+  updatePagesNumber: (data: number) => void;
 };
 
-export default function ({ searchValue, onSearchBarChange, onSearchBarSubmit }: SearchBarProps) {
+export default function ({
+  searchValue,
+  onSearchBarChange,
+  onSearchBarSubmit,
+  updatePagesNumber,
+}: SearchBarProps) {
   const [name, setName] = useLocalStorage('name', '');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
     onSearchBarChange(event.target.value);
+    updatePagesNumber(1);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -23,7 +30,6 @@ export default function ({ searchValue, onSearchBarChange, onSearchBarSubmit }: 
   };
 
   useEffect(() => {
-    // storing input name
     localStorage.setItem('name', JSON.stringify(name));
   }, [name]);
 

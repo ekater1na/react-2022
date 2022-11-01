@@ -1,17 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { CharacterItem } from '../CharacterItem/CharacterItem';
 import { ICharacter } from '../../models/models';
 
-import { useCharacters } from '../../hooks/useCharacters';
-import { Link } from 'react-router-dom';
-
 interface CharacterListProps {
-  query: string | number;
+  characters: ICharacter[];
 }
 
-export function CharacterList({ query }: CharacterListProps) {
-  const { characters } = useCharacters(query);
-
+export function CharacterList({ characters }: CharacterListProps) {
   return (
     <div data-testid={'character-list'}>
       {

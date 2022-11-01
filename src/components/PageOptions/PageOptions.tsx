@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-interface PageOptions {
+interface PageOptionsProps {
   totalCount: number;
 }
 
-export function PageOptions({ totalCount }: PageOptions) {
+export function PageOptions({ totalCount }: PageOptionsProps) {
+  const [resultPerPage, setResultPerPage] = useState<number>();
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setResultPerPage(+event.target.value);
+  };
+
   return (
     <div className="bg-blue-200 py-2 px-8 flex flex-row justify-between" data-testid="page-options">
       <div>
@@ -25,8 +31,10 @@ export function PageOptions({ totalCount }: PageOptions) {
       <div>
         <p className="font-bold">Results per page</p>
         <input
-          className="py-1 px-2 leading-tight text-gray-500 bg-white rounded-lg border border-gray-300"
+          className="py-1 px-2 leading-tight text-gray-500 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500"
           type="text"
+          value={resultPerPage}
+          onChange={onChange}
         />
       </div>
       <div>

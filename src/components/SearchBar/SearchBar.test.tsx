@@ -5,11 +5,17 @@ import { render, screen } from '@testing-library/react';
 
 const onChange = jest.fn();
 const onSubmit = jest.fn();
+const updatePagesNumber = jest.fn();
 
 describe('SearchBar component', () => {
   it('focus input', () => {
     render(
-      <SearchBar searchValue="rick" onSearchBarChange={onChange} onSearchBarSubmit={onSubmit} />
+      <SearchBar
+        searchValue="rick"
+        onSearchBarChange={onChange}
+        onSearchBarSubmit={onSubmit}
+        updatePagesNumber={updatePagesNumber}
+      />
     );
     const input = screen.getByPlaceholderText(/enter/i);
     expect(input).not.toHaveFocus();
@@ -33,7 +39,12 @@ describe('LocalStorage', () => {
 
   it('set localStorage data', () => {
     const { unmount } = render(
-      <SearchBar searchValue="" onSearchBarChange={onChange} onSearchBarSubmit={onSubmit} />
+      <SearchBar
+        searchValue=""
+        onSearchBarChange={onChange}
+        onSearchBarSubmit={onSubmit}
+        updatePagesNumber={updatePagesNumber}
+      />
     );
     const input = screen.getByPlaceholderText(/enter/i);
 

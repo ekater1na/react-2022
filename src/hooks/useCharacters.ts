@@ -1,34 +1,28 @@
 import axios, { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import { ICharacter, IResponse } from '../models/models';
+import { IInfo, IResponse } from '../models/models';
 
 export function useCharacters(searchValue: string | number) {
-  const [characters, setCharacters] = useState<ICharacter[]>([]);
+  const [fetchedData, updateFetchedData] = useState<IResponse>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const [totalCount, setTotalCount] = useState(0);
-  const [pages, setPages] = useState(0);
+  const [pagesNumber, updatePagesNumber] = useState(1);
+  const [info, setInfo] = useState<IInfo>();
 
-  const fetchCharacters = async (searchValue: string | number) => {
-    const URL = process.env.API_URL
-      ? process.env.API_URL
-      : 'https://rickandmortyapi.com/api/character/?name=';
+  const api = `https://rickandmortyapi.com/api/character/?page=${pagesNumber}&name=${searchValue}`;
 
+  const fetchCharacters = async () => {
     try {
       setError('');
       setLoading(true);
       const instance = axios.create();
-      const response = await instance.get<IResponse>(URL + `${searchValue}`);
+      const response = await instance.get<IResponse>(api).then((res) => res);
+      const data = response.data;
+      updateFetchedData(data);
 
-      const dataSet = response.data.results;
-      setCharacters(dataSet);
-
-      const count = response.data.info.count;
-      setTotalCount(count);
-
-      const pages = response.data.info.pages;
-      setPages(pages);
+      const info = response.data.info;
+      setInfo(info);
 
       setLoading(false);
     } catch (e: unknown) {
@@ -39,8 +33,8 @@ export function useCharacters(searchValue: string | number) {
   };
 
   useEffect(() => {
-    fetchCharacters(searchValue);
-  }, [searchValue]);
+    fetchCharacters();
+  }, [api]);
 
-  return { characters, error, loading, fetchCharacters, totalCount, pages };
+  return { fetchedData, error, loading, fetchCharacters, info, pagesNumber, updatePagesNumber };
 }
