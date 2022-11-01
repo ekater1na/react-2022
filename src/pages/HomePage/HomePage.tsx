@@ -10,8 +10,18 @@ import { Pagination } from '../../components/Pagination/Pagination';
 export function HomePage() {
   const [searchValue, setSearchValue] = useState('');
 
-  const { error, loading, fetchedData, pagesNumber, updatePagesNumber, info } =
-    useCharacters(searchValue);
+  const {
+    error,
+    loading,
+    fetchedData,
+    pagesNumber,
+    updatePagesNumber,
+    sortOrder,
+    resultPerPage,
+    setSortOrder,
+    setResultPerPage,
+    info,
+  } = useCharacters(searchValue);
 
   const handleSearchBarChange = (value: string) => {
     setSearchValue(value);
@@ -19,6 +29,14 @@ export function HomePage() {
 
   const handleSearchBarSubmit = () => {
     return;
+  };
+
+  const onSortOrderChange = (value: string) => {
+    setSortOrder(value);
+  };
+
+  const onResultPerPageChange = (value: number) => {
+    setResultPerPage(value);
   };
 
   return (
@@ -29,7 +47,15 @@ export function HomePage() {
         onSearchBarSubmit={handleSearchBarSubmit}
         updatePagesNumber={updatePagesNumber}
       />
-      {info && <PageOptions totalCount={info.pages} />}
+      {info && (
+        <PageOptions
+          sortOrder={sortOrder}
+          onSortOrderChange={onSortOrderChange}
+          resultPerPage={resultPerPage}
+          onResultPerPageChange={onResultPerPageChange}
+          totalCount={info.pages}
+        />
+      )}
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}

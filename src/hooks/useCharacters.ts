@@ -8,6 +8,8 @@ export function useCharacters(searchValue: string | number) {
   const [error, setError] = useState('');
 
   const [pagesNumber, updatePagesNumber] = useState(1);
+  const [sortOrder, setSortOrder] = useState('id-A-Z');
+  const [resultPerPage, setResultPerPage] = useState(10);
   const [info, setInfo] = useState<IInfo>();
 
   const api = `https://rickandmortyapi.com/api/character/?page=${pagesNumber}&name=${searchValue}`;
@@ -19,6 +21,12 @@ export function useCharacters(searchValue: string | number) {
       const instance = axios.create();
       const response = await instance.get<IResponse>(api).then((res) => res);
       const data = response.data;
+      console.log(data);
+      const itemsPerPage = data.results
+        .splice(resultPerPage, 20 - resultPerPage)
+        .sort((a, b) => (a.id > b.id ? 1 : -1));
+      console.log(itemsPerPage);
+
       updateFetchedData(data);
 
       const info = response.data.info;
@@ -36,5 +44,17 @@ export function useCharacters(searchValue: string | number) {
     fetchCharacters();
   }, [api]);
 
-  return { fetchedData, error, loading, fetchCharacters, info, pagesNumber, updatePagesNumber };
+  return {
+    fetchedData,
+    error,
+    loading,
+    fetchCharacters,
+    sortOrder,
+    setSortOrder,
+    resultPerPage,
+    setResultPerPage,
+    info,
+    pagesNumber,
+    updatePagesNumber,
+  };
 }
