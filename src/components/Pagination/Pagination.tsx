@@ -30,10 +30,10 @@ export function Pagination({ pagesNumber, info, updatePagesNumber }: Pagination)
     <div className="flex flex-row justify-center" data-testid="pagination">
       <ReactPaginate
         className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
-        nextLabel="Next >"
+        nextLabel=">"
         forcePage={pagesNumber === 1 ? 0 : pagesNumber - 1}
-        previousLabel="< Prev"
-        previousClassName="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        previousLabel="<"
+        previousClassName="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         nextClassName="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
         activeClassName="active"
         marginPagesDisplayed={width < 576 ? 1 : 2}
