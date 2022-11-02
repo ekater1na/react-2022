@@ -33,12 +33,12 @@ export function PageOptions({
           <option disabled value="">
             Choose order
           </option>
-          <option value="date-posted-asc">date-posted-asc</option>
-          <option value="date-posted-desc">date-posted-desc</option>
-          <option value="date-taken-asc">date-taken-asc</option>
-          <option value="date-taken-desc">date-taken-desc</option>
-          <option value="interestingness-desc">interestingness-desc</option>
-          <option value="interestingness-asc">interestingness-asc</option>
+          <option value="date-posted-asc">date-posted ⇈</option>
+          <option value="date-posted-desc">date-posted ⇊</option>
+          <option value="date-taken-asc">date-taken ⇈</option>
+          <option value="date-taken-desc">date-taken ⇊</option>
+          <option value="interestingness-asc">interestingness ⇈</option>
+          <option value="interestingness-desc">interestingness ⇊</option>
           <option value="relevance">relevance</option>
         </select>
       </div>
