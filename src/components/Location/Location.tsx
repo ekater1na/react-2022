@@ -10,7 +10,7 @@ const Location = () => {
     <div className="bg-blue-400 w-[200px] flex-col">
       <p className="font-bold text-blue-800">Location:</p>
       <p className="text-white">
-        {pageTitle === '/' ? 'Main' : pageTitle.replace(/\//g, ' ').toUpperCase()}
+        {pageTitle === '/' ? 'MAIN' : pageTitle.replace(/\//g, ' ').toUpperCase()}
       </p>
     </div>
   );

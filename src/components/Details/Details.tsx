@@ -29,7 +29,7 @@ export function Details() {
             <p className="text-m text-white mt-[3px]">ID: {id}</p>
           </div>
           <div className="my-1 py-2 px-6 rounded flex flex-col items-center mb-2">
-            <div className="h-[300px] flex justify-center">
+            <div className="flex justify-center">
               <img
                 src={character?.url_n}
                 alt={character?.id}

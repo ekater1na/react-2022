@@ -24,7 +24,7 @@ export function PageOptions({
   return (
     <div className="bg-blue-200 pb-1 px-8 flex flex-row justify-between" data-testid="page-options">
       <div>
-        <span className="font-bold px-2">Sort Order</span>
+        <span className="font-bold px-2">Sort Order:</span>
         <select
           className="appearance-none border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="order"
@@ -43,7 +43,7 @@ export function PageOptions({
         </select>
       </div>
       <div>
-        <span className="font-bold px-2">Results per page</span>
+        <span className="font-bold px-2">Results per page:</span>
         <input
           type="text"
           className="py-1 px-2 leading-tight text-gray-500 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500"
@@ -52,7 +52,7 @@ export function PageOptions({
         />
       </div>
       <div>
-        <span className="font-bold px-2">Total pages</span>
+        <span className="font-bold px-2">Total pages:</span>
         <span>{totalCount}</span>
       </div>
     </div>
