@@ -11,16 +11,16 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { InitialState } from './context/Context';
+import GlobalState from 'context/GlobalState';
 library.add(faCheckSquare, faUser, faCalendarDays, faPercent);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <BrowserRouter basename="/ekater1na-REACT2022Q3">
-    <InitialState>
+  <GlobalState>
+    <BrowserRouter basename="/ekater1na-REACT2022Q3">
       <App />
-    </InitialState>
-  </BrowserRouter>
+    </BrowserRouter>
+  </GlobalState>
 );
 
 // If you want to start measuring performance in your app, pass a function

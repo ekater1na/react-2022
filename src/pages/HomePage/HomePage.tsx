@@ -1,70 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { CharacterList } from 'components/CharacterList/CharacterList';
+import { PhotoList } from 'components/PhotoList/PhotoList';
 import { Loader } from '../../components/Loader/Loader';
 import { ErrorMessage } from '../../components/Error/Error';
-import { useCharacters } from '../../hooks/useCharacters';
 import { PageOptions } from '../../components/PageOptions/PageOptions';
 import { Pagination } from '../../components/Pagination/Pagination';
+import { AppContext } from '../../context/Context';
 
 export function HomePage() {
-  const [searchValue, setSearchValue] = useState('');
-
-  const {
-    error,
-    loading,
-    fetchedData,
-    pageNumber,
-    updatePageNumber,
-    resultPerPage,
-    setSortOrder,
-    setResultPerPage,
-  } = useCharacters(searchValue);
-
-  const handleSearchBarChange = (value: string) => {
-    setSearchValue(value);
-  };
-
-  const handleSearchBarSubmit = () => {
-    return;
-  };
-
-  const onSortOrderChange = (value: string) => {
-    setSortOrder(value);
-  };
-
-  const onResultPerPageChange = (value: number) => {
-    setResultPerPage(value);
-  };
+  const { state } = useContext(AppContext);
+  const { photos, error, isLoading } = state;
 
   return (
     <div data-testid="home-page">
-      <SearchBar
-        searchValue={searchValue}
-        onSearchBarChange={handleSearchBarChange}
-        onSearchBarSubmit={handleSearchBarSubmit}
-        updatePagesNumber={updatePageNumber}
-      />
-      {fetchedData && (
-        <PageOptions
-          onSortOrderChange={onSortOrderChange}
-          resultPerPage={resultPerPage}
-          onResultPerPageChange={onResultPerPageChange}
-          totalCount={fetchedData.photos.pages}
-        />
-      )}
+      <SearchBar />
+      {photos && <PageOptions />}
       <div className="container mx-auto max-w-8xl">
-        {loading && <Loader />}
+        {isLoading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {!error && fetchedData && <CharacterList characters={fetchedData.photos.photo} />}
+        {!error && photos && <PhotoList characters={photos} />}
       </div>
-      {fetchedData && (
-        <Pagination
-          pagesNumber={pageNumber}
-          info={fetchedData.photos}
-          updatePageNumber={updatePageNumber}
-        />
-      )}
+      {photos && <Pagination />}
     </div>
   );
 }

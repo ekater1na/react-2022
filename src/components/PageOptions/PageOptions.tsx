@@ -1,24 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/Context';
+import { ActionType } from '../../context/reducers';
 
-interface PageOptionsProps {
-  onSortOrderChange: (sortOrder: string) => void;
-  resultPerPage: number;
-  onResultPerPageChange: (resultPerPage: number) => void;
-  totalCount: number;
-}
+export function PageOptions() {
+  const { state, dispatch } = useContext(AppContext);
+  const { sortOrder, resultsPerPage, totalPagesCount } = state;
 
-export function PageOptions({
-  onSortOrderChange,
-  resultPerPage,
-  onResultPerPageChange,
-  totalCount,
-}: PageOptionsProps) {
-  const onResultChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    onResultPerPageChange(+event.target.value);
-  };
-
-  const onOrderChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    onSortOrderChange(event.target.value);
+  const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+    const { name, value } = event.target;
+    dispatch({ type: ActionType.SetPageOptions, payload: { name, value } });
   };
 
   return (
@@ -28,7 +18,9 @@ export function PageOptions({
         <select
           className="appearance-none border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="order"
-          onChange={onOrderChange}
+          value={sortOrder}
+          name="sortOrder"
+          onChange={onChange}
         >
           <option disabled value="">
             Choose order
@@ -47,13 +39,14 @@ export function PageOptions({
         <input
           type="text"
           className="py-1 px-2 leading-tight text-gray-500 bg-white rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500"
-          onChange={onResultChange}
-          value={resultPerPage}
+          value={resultsPerPage}
+          name="resultsPerPage"
+          onChange={onChange}
         />
       </div>
       <div>
         <span className="font-bold px-2">Total pages:</span>
-        <span>{totalCount}</span>
+        <span>{totalPagesCount}</span>
       </div>
     </div>
   );

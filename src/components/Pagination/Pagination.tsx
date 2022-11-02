@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { IItem } from '../../models/models';
-
-interface Pagination {
-  pagesNumber: number;
-  info: IItem;
-  updatePageNumber: (data: number) => void;
-}
+import { AppContext } from '../../context/Context';
+import { ActionType } from '../../context/reducers';
 
 interface PageChange {
   selected: number;
 }
 
-export function Pagination({ pagesNumber, info, updatePageNumber }: Pagination) {
+export function Pagination() {
+  const { state, dispatch } = useContext(AppContext);
+  const { pageNumber, totalPagesCount } = state;
+
   const pageChange = (data: PageChange) => {
-    updatePageNumber(data.selected + 1);
+    dispatch({ type: ActionType.SetCurrentPage, payload: data.selected + 1 });
   };
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -29,16 +27,16 @@ export function Pagination({ pagesNumber, info, updatePageNumber }: Pagination) 
   return (
     <div className="flex flex-row justify-center" data-testid="pagination">
       <ReactPaginate
-        className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
+        className="flex items-center justify-between px-4 py-1 sm:px-6 "
         nextLabel=">"
-        forcePage={pagesNumber === 1 ? 0 : pagesNumber - 1}
+        forcePage={pageNumber === 1 ? 0 : pageNumber - 1}
         previousLabel="<"
-        previousClassName="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        nextClassName="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-        activeClassName="active"
+        previousClassName="relative inline-flex items-center rounded-l-md border border-gray-300 px-2 py-2 text-sm font-medium text-gray-700 "
+        nextClassName="relative inline-flex items-center rounded-r-md border border-gray-300 px-2 py-2 text-sm font-medium text-gray-700"
+        activeClassName="py-1 bg-blue-300 mx-1"
         marginPagesDisplayed={width < 576 ? 1 : 2}
         pageRangeDisplayed={width < 576 ? 1 : 2}
-        pageCount={info.pages}
+        pageCount={totalPagesCount}
         onPageChange={pageChange}
         pageClassName=""
         pageLinkClassName="relative inline-flex items-center border border-gray-300 bg-white mx-1 px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-2"

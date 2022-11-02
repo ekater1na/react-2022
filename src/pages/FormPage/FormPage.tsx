@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
-import { Product } from '../../models/models';
+import { IProduct } from '../../models/models';
 import FormCard from '../../components/FormCard/FormCard';
 import Form from '../../components/Forms/Form';
+import { AppContext } from '../../context/Context';
+import { ActionType } from '../../context/reducers';
 
 export function FormPage() {
-  const [values, setValues] = useState<Product[]>([]);
+  const { state, dispatch } = useContext(AppContext);
+  const formValues = state.formValues;
 
-  const addValue = (data: Product) => {
-    setValues((prev) => [...prev, data]);
+  const setValue = (product: IProduct) => {
+    dispatch({
+      type: ActionType.AddProduct,
+      payload: { product },
+    });
   };
 
   return (
     <div data-testid="form-page">
-      <Form setFormValues={addValue} />
+      <Form setFormValues={setValue} />
       <div className="container mx-auto max-w-8xl">
         <div className="grid grid-cols-4 gap-3" data-testid="form-cards">
-          {values && values.map((item: Product) => <FormCard key={item.id} item={item} />)}
+          {formValues && formValues.map((item: IProduct) => <FormCard key={item.id} item={item} />)}
         </div>
       </div>
     </div>

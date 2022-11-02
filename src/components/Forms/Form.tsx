@@ -1,10 +1,10 @@
 import React from 'react';
-import { Product } from '../../models/models';
+import { IProduct } from '../../models/models';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import moment from 'moment/moment';
 
 interface FormProps {
-  setFormValues: (value: Product) => void;
+  setFormValues: (value: IProduct) => void;
 }
 
 export default function Form({ setFormValues }: FormProps) {
@@ -15,7 +15,7 @@ export default function Form({ setFormValues }: FormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<Product>({
+  } = useForm<IProduct>({
     defaultValues: {
       id: '',
       title: '',
@@ -27,7 +27,7 @@ export default function Form({ setFormValues }: FormProps) {
     },
   });
 
-  const onSubmit: SubmitHandler<Product> = (data: Product) => {
+  const onSubmit: SubmitHandler<IProduct> = (data: IProduct) => {
     setFormValues({
       ...data,
       id: moment().toString(),

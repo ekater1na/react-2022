@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CharacterList } from './CharacterList';
+import { PhotoList } from './PhotoList';
 import { render, screen } from '@testing-library/react';
 import {
   faCalendarDays,
@@ -14,7 +14,7 @@ import { IPhoto } from '../../models/models';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 library.add(faCheckSquare, faPercent, faCalendarDays, faUser);
 
-const mockCharacters: IPhoto[] = [
+const mockPhotos: IPhoto[] = [
   {
     datetaken: '2011-06-04 20:27:41',
     datetakengranularity: 0,
@@ -55,12 +55,12 @@ const mockCharacters: IPhoto[] = [
   },
 ];
 
-describe('CharacterList component', () => {
+describe('PhtotList component', () => {
   test('renders list of cards', () => {
     render(
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<CharacterList characters={mockCharacters} />}></Route>
+          <Route path="/" element={<PhotoList characters={mockPhotos} />}></Route>
         </Routes>
       </BrowserRouter>
     );
@@ -72,7 +72,7 @@ describe('CharacterList component', () => {
     render(
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<CharacterList characters={mockCharacters} />}></Route>
+          <Route path="/" element={<PhotoList characters={mockPhotos} />}></Route>
         </Routes>
       </BrowserRouter>
     );
