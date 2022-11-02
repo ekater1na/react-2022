@@ -14,7 +14,7 @@ export function Details() {
   return (
     <>
       <div
-        className="px-6 rounded w-[800px] p-2 bg-white absolute top-24 left-1/2 -translate-x-1/2"
+        className="px-6 rounded w-[700px] p-2 bg-white absolute top-24 left-1/2 -translate-x-1/2"
         data-testid="details"
       >
         <Link className="bg-red-300 p-2 rounded-xl" to="/">
@@ -57,37 +57,38 @@ export function Details() {
                 </span>
               </span>
             </div>
-            <div className="px-1 py-4 text-xl">
-              <div className="flex items-center justify-between">
-                <span
-                  data-testid="gender"
-                  className={character?.ispublic === 1 ? 'text-green-600' : 'text-gray-300'}
-                >
-                  <span className="text-white px-2"> Public:</span>
-                  <FontAwesomeIcon icon={['fas', 'check-square']} />
-                </span>
-                <span
-                  data-testid="status"
-                  className={
-                    character?.isfriend === 1 ? 'text-green-600 px-3' : 'text-gray-300 px-3'
-                  }
-                >
-                  <span className="text-white px-2"> Friend:</span>
-                  <FontAwesomeIcon icon={['fas', 'check-square']} />
-                </span>
-                <span
-                  data-testid="status"
-                  className={character?.isfamily === 1 ? 'text-green-600' : 'text-gray-300'}
-                >
-                  <span className="text-white px-2"> Family:</span>
-                  <FontAwesomeIcon icon={['fas', 'check-square']} />
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-m text-blue-200 mt-[3px]">Server: {character?.server}</span>
-                <span className="text-m text-blue-200 mt-[3px]">Secret: {character?.secret}</span>
-                <span className="text-m text-blue-200 mt-[3px]">Farm: {character?.farm}</span>
-              </div>
+          </div>
+
+          <div className="px-1 py-4 text-xl">
+            <div className="flex items-center justify-between">
+              <span
+                data-testid="gender"
+                className={character?.ispublic === 1 ? 'text-green-600' : 'text-gray-300'}
+              >
+                <span className="text-white px-2"> Public:</span>
+                <FontAwesomeIcon icon={['fas', 'check-square']} />
+              </span>
+              <span
+                data-testid="status"
+                className={character?.isfriend === 1 ? 'text-green-600 px-3' : 'text-gray-300 px-3'}
+              >
+                <span className="text-white px-2"> Friend:</span>
+                <FontAwesomeIcon icon={['fas', 'check-square']} />
+              </span>
+              <span
+                data-testid="status"
+                className={character?.isfamily === 1 ? 'text-green-600' : 'text-gray-300'}
+              >
+                <span className="text-white px-2"> Family:</span>
+                <FontAwesomeIcon icon={['fas', 'check-square']} />
+              </span>
+            </div>
+            <div className="flex items-center justify-between w-full">
+              <span className="text-m text-blue-200 mt-[3px]">Server: {character?.server}</span>
+              <span className="text-m text-blue-200 mt-[3px] px-2">
+                Secret: {character?.secret}
+              </span>
+              <span className="text-m text-blue-200 mt-[3px]">Farm: {character?.farm}</span>
             </div>
           </div>
         </section>

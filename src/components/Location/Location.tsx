@@ -7,9 +7,11 @@ const Location = () => {
   const pageTitle = location.pathname;
 
   return (
-    <div className="flex justify-end  px-2 py-0 bg-blue-100">
-      <b className="px-2">Location: </b> {pageTitle === '/' ? 'Main' : pageTitle.replace(/\//g, '')}{' '}
-      Page
+    <div className="bg-blue-400 w-[200px] flex-col">
+      <p className="font-bold text-blue-800">Location:</p>
+      <p className="text-white">
+        {pageTitle === '/' ? 'Main' : pageTitle.replace(/\//g, ' ').toUpperCase()}
+      </p>
     </div>
   );
 };

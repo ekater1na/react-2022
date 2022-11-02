@@ -9,7 +9,7 @@ export function AboutUs() {
     items-center
     justify-center
     w-screen
-    h-[calc(100vh-80px)]
+    h-[calc(100vh-48px)]
     bg-gradient-to-r
     from-indigo-600
     to-blue-400

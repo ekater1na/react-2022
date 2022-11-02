@@ -12,8 +12,10 @@ import { Details } from './components/Details/Details';
 function App() {
   return (
     <div>
-      <Location />
-      <Header />
+      <div className="flex items-center justify-between">
+        <Header />
+        <Location />
+      </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/photo/:id" element={<Details />} />
