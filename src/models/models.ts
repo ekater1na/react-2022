@@ -12,34 +12,34 @@ export type Product = {
 };
 
 export interface IResponse {
-  info: IInfo;
-  results: ICharacter[];
+  photos: IItem;
+  stat: string;
 }
 
-export interface IInfo {
-  count: number;
+export interface IItem {
+  page: number;
   pages: number;
-  next: string;
-  prev: string | null;
+  perpage: number;
+  total: number;
+  photo: IPhoto[];
 }
 
-export interface ICharacter {
-  id: number;
-  name: string;
-  created: string;
-  episode: string[];
-  gender: string;
-  image: string;
-  location: {
-    name: string;
-    url: string;
-  };
-  origin: {
-    name: string;
-    url: string;
-  };
-  species: string;
-  status: string;
-  type: string;
-  url: string;
+export interface IPhoto {
+  datetaken: string;
+  datetakengranularity: number;
+  datetakenunknown: string;
+  farm: number;
+  height_n: number;
+  id: string;
+  isfamily: number;
+  isfriend: number;
+  ispublic: number;
+  owner: string;
+  ownername: string;
+  secret: string;
+  server: string;
+  title: string;
+  url_n: string;
+  views: string;
+  width_n: number;
 }

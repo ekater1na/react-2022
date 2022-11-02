@@ -20,7 +20,6 @@ export function HomePage() {
     resultPerPage,
     setSortOrder,
     setResultPerPage,
-    info,
   } = useCharacters(searchValue);
 
   const handleSearchBarChange = (value: string) => {
@@ -47,22 +46,26 @@ export function HomePage() {
         onSearchBarSubmit={handleSearchBarSubmit}
         updatePagesNumber={updatePagesNumber}
       />
-      {info && (
+      {fetchedData && (
         <PageOptions
           sortOrder={sortOrder}
           onSortOrderChange={onSortOrderChange}
           resultPerPage={resultPerPage}
           onResultPerPageChange={onResultPerPageChange}
-          totalCount={info.pages}
+          totalCount={fetchedData.photos.pages}
         />
       )}
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {!error && fetchedData && <CharacterList characters={fetchedData?.results} />}
+        {!error && fetchedData && <CharacterList characters={fetchedData?.photos.photo} />}
       </div>
-      {info && (
-        <Pagination pagesNumber={pagesNumber} info={info} updatePagesNumber={updatePagesNumber} />
+      {fetchedData && (
+        <Pagination
+          pagesNumber={pagesNumber}
+          info={fetchedData.photos}
+          updatePagesNumber={updatePagesNumber}
+        />
       )}
     </div>
   );

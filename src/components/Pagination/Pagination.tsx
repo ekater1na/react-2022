@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { IInfo } from '../../models/models';
+import { IItem } from '../../models/models';
 
 interface Pagination {
   pagesNumber: number;
-  info: IInfo;
+  info: IItem;
   updatePagesNumber: (data: number) => void;
 }
 

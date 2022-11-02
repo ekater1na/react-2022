@@ -10,56 +10,48 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { ICharacter } from '../../models/models';
+import { IPhoto } from '../../models/models';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 library.add(faCheckSquare, faPercent, faCalendarDays, faUser);
 
-const mockCharacters: ICharacter[] = [
+const mockCharacters: IPhoto[] = [
   {
-    id: 1,
-    name: 'Rick Sanchez',
-    status: 'Alive',
-    species: 'Human',
-    type: '',
-    gender: 'Male',
-    origin: {
-      name: 'Earth (C-137)',
-      url: 'https://rickandmortyapi.com/api/location/1',
-    },
-    location: {
-      name: 'Citadel of Ricks',
-      url: 'https://rickandmortyapi.com/api/location/3',
-    },
-    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-    episode: [
-      'https://rickandmortyapi.com/api/episode/1',
-      'https://rickandmortyapi.com/api/episode/2',
-    ],
-    url: 'https://rickandmortyapi.com/api/character/1',
-    created: '2017-11-04T18:48:46.250Z',
+    datetaken: '2011-06-04 20:27:41',
+    datetakengranularity: 0,
+    datetakenunknown: '0',
+    farm: 66,
+    height_n: 240,
+    id: '52428521578',
+    isfamily: 0,
+    isfriend: 0,
+    ispublic: 1,
+    owner: '61617475@N02',
+    ownername: 'Scott Mundy',
+    secret: 'a7c6a94ff5',
+    server: '65535',
+    title: 'Houses of Parliament, London',
+    url_n: 'https://live.staticflickr.com/65535/52428521578_a7c6a94ff5_n.jpg',
+    views: '8482',
+    width_n: 320,
   },
   {
-    id: 2,
-    name: 'Rick Sanchez',
-    status: 'Alive',
-    species: 'Human',
-    type: '',
-    gender: 'Male',
-    origin: {
-      name: 'Earth (C-137)',
-      url: 'https://rickandmortyapi.com/api/location/1',
-    },
-    location: {
-      name: 'Citadel of Ricks',
-      url: 'https://rickandmortyapi.com/api/location/3',
-    },
-    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-    episode: [
-      'https://rickandmortyapi.com/api/episode/1',
-      'https://rickandmortyapi.com/api/episode/2',
-    ],
-    url: 'https://rickandmortyapi.com/api/character/1',
-    created: '2017-11-04T18:48:46.250Z',
+    datetaken: '2011-06-04 20:27:41',
+    datetakengranularity: 0,
+    datetakenunknown: '0',
+    farm: 66,
+    height_n: 240,
+    id: '52428521579',
+    isfamily: 0,
+    isfriend: 0,
+    ispublic: 1,
+    owner: '61617475@N02',
+    ownername: 'Scott Mundy',
+    secret: 'a7c6a94ff5',
+    server: '65535',
+    title: 'Houses of Parliament, London',
+    url_n: 'https://live.staticflickr.com/65535/52428521578_a7c6a94ff5_n.jpg',
+    views: '8482',
+    width_n: 320,
   },
 ];
 

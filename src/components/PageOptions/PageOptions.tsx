@@ -38,12 +38,13 @@ export function PageOptions({
           <option disabled value="">
             Choose order
           </option>
-          <option value="id-asc">id asc</option>
-          <option value="id-desc">id desc</option>
-          <option value="name-asc">name asc</option>
-          <option value="name-desc">name desc</option>
-          <option value="status-asc">status asc</option>
-          <option value="status-desc">status desc</option>
+          <option value="date-posted-asc">date-posted-asc</option>
+          <option value="date-posted-desc">date-posted-desc</option>
+          <option value="date-taken-asc">date-taken-asc</option>
+          <option value="date-taken-desc">date-taken-desc</option>
+          <option value="interestingness-desc">interestingness-desc</option>
+          <option value="interestingness-asc">interestingness-asc</option>
+          <option value="relevance">relevance</option>
         </select>
       </div>
       <div>
