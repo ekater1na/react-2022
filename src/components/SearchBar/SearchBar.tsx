@@ -1,31 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { AppContext } from '../../context/Context';
+import { ActionType } from '../../context/reducers';
 
-type SearchBarProps = {
-  searchValue: string;
-  onSearchBarChange: (value: string) => void;
-  onSearchBarSubmit: () => void;
-  updatePagesNumber: (data: number) => void;
-};
+export default function () {
+  const { state, dispatch, fetchPhotos } = useContext(AppContext);
+  const { searchValue, sortOrder, resultsPerPage, pageNumber } = state;
 
-export default function ({
-  searchValue,
-  onSearchBarChange,
-  onSearchBarSubmit,
-  updatePagesNumber,
-}: SearchBarProps) {
   const [name, setName] = useLocalStorage('name', '');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(event.target.value);
-    onSearchBarChange(event.target.value);
-    updatePagesNumber(1);
+    const { value } = event.target;
+    dispatch({ type: ActionType.SetSearchValue, payload: value });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (searchValue) {
-      onSearchBarSubmit();
+      fetchPhotos(searchValue, sortOrder, resultsPerPage, pageNumber);
+      dispatch({ type: ActionType.SetCurrentPage, payload: 1 });
+      dispatch({ type: ActionType.ResetPage });
     }
   };
 

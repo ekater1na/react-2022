@@ -9,14 +9,7 @@ const updatePagesNumber = jest.fn();
 
 describe('SearchBar component', () => {
   it('focus input', () => {
-    render(
-      <SearchBar
-        searchValue="rick"
-        onSearchBarChange={onChange}
-        onSearchBarSubmit={onSubmit}
-        updatePagesNumber={updatePagesNumber}
-      />
-    );
+    render(<SearchBar />);
     const input = screen.getByPlaceholderText(/enter/i);
     expect(input).not.toHaveFocus();
     input.focus();
@@ -38,14 +31,7 @@ describe('LocalStorage', () => {
   });
 
   it('set localStorage data', () => {
-    const { unmount } = render(
-      <SearchBar
-        searchValue=""
-        onSearchBarChange={onChange}
-        onSearchBarSubmit={onSubmit}
-        updatePagesNumber={updatePagesNumber}
-      />
-    );
+    const { unmount } = render(<SearchBar />);
     const input = screen.getByPlaceholderText(/enter/i);
 
     localStorageMock.setItem('search', 'item');

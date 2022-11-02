@@ -7,14 +7,7 @@ describe('Page options component', () => {
   const onResultPerPageChange = jest.fn();
 
   test('renders ', () => {
-    render(
-      <PageOptions
-        onSortOrderChange={onSortOrderChange}
-        resultPerPage={5}
-        onResultPerPageChange={onResultPerPageChange}
-        totalCount={12}
-      />
-    );
+    render(<PageOptions />);
     const elem = screen.getByTestId<HTMLElement>('page-options');
     expect(elem).toBeInTheDocument();
   });
