@@ -11,7 +11,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 library.add(faCheckSquare, faPlusSquare, faUser, faCalendarDays);
 
 describe('HomePage component', () => {
@@ -33,29 +33,18 @@ describe('HomePage component', () => {
 
   it('fetches data', async () => {
     render(
-        <BrowserRouter>
-          <Routes>
-            <Route path="*" element={<HomePage />}></Route>
-          </Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<HomePage />}></Route>
+        </Routes>
+      </BrowserRouter>
     );
     const input = screen.getByPlaceholderText(/enter/i);
-    userEvent.type(input, 'rick');
+    userEvent.type(input, 'test');
     const btn = screen.getByTestId('search-btn');
     userEvent.click(btn);
-    await waitFor(() => expect(screen.getAllByText(/rick/i)[0]).toBeInTheDocument(), {
+    await waitFor(() => expect(screen.getAllByText(/test/i)[0]).toBeInTheDocument(), {
       timeout: 1000,
-    });
-  });
-
-  it('show error', async () => {
-    render(<HomePage />);
-    const input = screen.getByPlaceholderText(/enter/i);
-    userEvent.type(input, '55887ass7');
-    const btn = screen.getByTestId('search-btn');
-    userEvent.click(btn);
-    await waitFor(() => expect(screen.getByText(/request failed/i)).toBeInTheDocument(), {
-      timeout: 3000,
     });
   });
 });

@@ -14,9 +14,8 @@ export function HomePage() {
     error,
     loading,
     fetchedData,
-    pagesNumber,
-    updatePagesNumber,
-    sortOrder,
+    pageNumber,
+    updatePageNumber,
     resultPerPage,
     setSortOrder,
     setResultPerPage,
@@ -44,11 +43,10 @@ export function HomePage() {
         searchValue={searchValue}
         onSearchBarChange={handleSearchBarChange}
         onSearchBarSubmit={handleSearchBarSubmit}
-        updatePagesNumber={updatePagesNumber}
+        updatePagesNumber={updatePageNumber}
       />
       {fetchedData && (
         <PageOptions
-          sortOrder={sortOrder}
           onSortOrderChange={onSortOrderChange}
           resultPerPage={resultPerPage}
           onResultPerPageChange={onResultPerPageChange}
@@ -58,13 +56,13 @@ export function HomePage() {
       <div className="container mx-auto max-w-8xl">
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {!error && fetchedData && <CharacterList characters={fetchedData?.photos.photo} />}
+        {!error && fetchedData && <CharacterList characters={fetchedData.photos.photo} />}
       </div>
       {fetchedData && (
         <Pagination
-          pagesNumber={pagesNumber}
+          pagesNumber={pageNumber}
           info={fetchedData.photos}
-          updatePagesNumber={updatePagesNumber}
+          updatePageNumber={updatePageNumber}
         />
       )}
     </div>

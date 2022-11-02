@@ -5,16 +5,16 @@ import { IItem } from '../../models/models';
 interface Pagination {
   pagesNumber: number;
   info: IItem;
-  updatePagesNumber: (data: number) => void;
+  updatePageNumber: (data: number) => void;
 }
 
 interface PageChange {
   selected: number;
 }
 
-export function Pagination({ pagesNumber, info, updatePagesNumber }: Pagination) {
+export function Pagination({ pagesNumber, info, updatePageNumber }: Pagination) {
   const pageChange = (data: PageChange) => {
-    updatePagesNumber(data.selected + 1);
+    updatePageNumber(data.selected + 1);
   };
 
   const [width, setWidth] = useState(window.innerWidth);

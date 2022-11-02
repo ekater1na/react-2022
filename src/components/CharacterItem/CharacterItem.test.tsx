@@ -63,28 +63,7 @@ describe('CharacterItem component', () => {
   test('renders card with images', () => {
     render(<CharacterItem character={mockCharacter} />);
     const elem = screen.getAllByRole<HTMLInputElement>('img');
-    expect(elem).toHaveLength(3);
-  });
+    expect(elem).toHaveLength(1);  });
 
-  test('shows correct icons', () => {
-    render(<CharacterItem character={mockCharacter} />);
-    const gender = screen.getByTestId<HTMLButtonElement>('gender');
-    expect(gender).toHaveClass('text-blue-600 px-3');
-    expect(gender).not.toHaveClass('text-red-600 px-3');
 
-    const status = screen.getByTestId<HTMLButtonElement>('status');
-    expect(status).toHaveClass('text-green-600');
-    expect(status).not.toHaveClass('text-gray-300');
-  });
-
-  test('shows correct icons', () => {
-    render(<CharacterItem character={mockCharacterFemale} />);
-    const gender = screen.getByTestId<HTMLButtonElement>('gender');
-    expect(gender).not.toHaveClass('text-blue-600 px-3');
-    expect(gender).toHaveClass('text-red-600 px-3');
-
-    const status = screen.getByTestId<HTMLButtonElement>('status');
-    expect(status).not.toHaveClass('text-green-600');
-    expect(status).toHaveClass('text-gray-300');
-  });
 });

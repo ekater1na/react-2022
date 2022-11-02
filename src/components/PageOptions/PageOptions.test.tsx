@@ -9,7 +9,6 @@ describe('Page options component', () => {
   test('renders ', () => {
     render(
       <PageOptions
-        sortOrder={''}
         onSortOrderChange={onSortOrderChange}
         resultPerPage={5}
         onResultPerPageChange={onResultPerPageChange}

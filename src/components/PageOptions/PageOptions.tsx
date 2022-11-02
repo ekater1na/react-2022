@@ -1,7 +1,6 @@
 import React from 'react';
 
 interface PageOptionsProps {
-  sortOrder: string;
   onSortOrderChange: (sortOrder: string) => void;
   resultPerPage: number;
   onResultPerPageChange: (resultPerPage: number) => void;
@@ -9,7 +8,6 @@ interface PageOptionsProps {
 }
 
 export function PageOptions({
-  sortOrder,
   onSortOrderChange,
   resultPerPage,
   onResultPerPageChange,
@@ -17,13 +15,10 @@ export function PageOptions({
 }: PageOptionsProps) {
   const onResultChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     onResultPerPageChange(+event.target.value);
-    console.log(resultPerPage);
   };
 
   const onOrderChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    console.log('sortOrder1', sortOrder);
     onSortOrderChange(event.target.value);
-    console.log('sortOrder2', sortOrder);
   };
 
   return (

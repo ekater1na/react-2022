@@ -44,7 +44,7 @@ export default function ({
           >
             <input
               type="text"
-              placeholder="enter name, for example 'Rick'"
+              placeholder="enter"
               className="rounded-full flex-1 px-6 py-2 text-gray-700 focus:outline-none"
               onChange={handleChange}
               value={searchValue}
