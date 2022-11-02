@@ -14,7 +14,7 @@ export function CharacterList({ characters }: CharacterListProps) {
       {
         <div className="grid grid-cols-5 gap-3" data-testid="cards">
           {characters.map((item: IPhoto) => (
-            <Link to={'character/' + item.id} key={item.id}>
+            <Link to={'photo/' + item.id} key={item.id}>
               <CharacterItem character={item} key={item.id} />
             </Link>
           ))}

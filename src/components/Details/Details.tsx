@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IPhoto } from '../../models/models';
+import { useCharacters } from '../../hooks/useCharacters';
 
 export function Details() {
   const { id } = useParams();
-  const [character, setCharacter] = useState<IPhoto>();
+  const { fetchedData } = useCharacters('');
 
-  const api = `https://rickandmortyapi.com/api/character/${id}`;
-
-  useEffect(() => {
-    (async function () {
-      const data = await fetch(api).then((res) => res.json());
-      setCharacter(data);
-    })();
-  }, [api]);
+  const character = fetchedData?.photos.photo.find((item) => item.id == id);
 
   const title = 'Photo details';
   return (
@@ -32,13 +25,13 @@ export function Details() {
         </div>
         <section className="container mx-auto bg-gradient-to-r from-blue-900 to-blue-500 p-4 py-5 px-5 rounded-xl">
           <div className="flex items-center justify-between py-3">
-            <p className="text-m text-white mt-[3px]">Episodes: {character?.farm}</p>
+            <p className="text-m text-white mt-[3px]">Views: {character?.views}</p>
             <p className="text-m text-white mt-[3px]">ID: {id}</p>
           </div>
           <div className="my-1 py-2 px-6 rounded flex flex-col items-center mb-2">
             <div className="h-[300px] flex justify-center">
               <img
-                src={character?.id}
+                src={character?.url_n}
                 alt={character?.id}
                 className="border-double border-4 border-white"
               />
@@ -49,44 +42,51 @@ export function Details() {
               </p>
               <a href={character?.server} target="_blank" rel="noreferrer">
                 <p className="text-center truncate text-xl px-2" title="origin name">
-                  {character?.title}
+                  {character?.owner}
                 </p>
               </a>
             </div>
-            <p className="text-gray-400 text-m">{character?.owner}</p>
+            <p className="text-gray-400 text-m">{character?.ownername}</p>
 
+            <div className="py-2">
+              <span className="text-white text-xl px-2">
+                {'📆'}
+
+                <span className="px-1 text-xl font-semibold text-blue-200">
+                  {character?.datetaken.slice(0, 10)}
+                </span>
+              </span>
+            </div>
             <div className="px-1 py-4 text-xl">
               <div className="flex items-center justify-between">
-                <span className="text-white px-2">
-                  {'📆'}
-
-                  {/*<span className="px-1 text-sm font-semibold text-blue-200">*/}
-                  {/*  {character?.created.slice(0, 10)}*/}
-                  {/*</span>*/}
-                </span>
-
                 <span
                   data-testid="gender"
-                  className={character?.ispublic === 0 ? 'text-blue-900 px-3' : 'text-red-600 px-3'}
+                  className={character?.ispublic === 1 ? 'text-green-600' : 'text-gray-300'}
                 >
-                  <span className="text-white px-2"> Gender:</span>
-                  <FontAwesomeIcon icon={['fas', 'user']} />
+                  <span className="text-white px-2"> Public:</span>
+                  <FontAwesomeIcon icon={['fas', 'check-square']} />
                 </span>
                 <span
                   data-testid="status"
-                  className={character?.isfriend === 0 ? 'text-green-600' : 'text-gray-300'}
+                  className={
+                    character?.isfriend === 1 ? 'text-green-600 px-3' : 'text-gray-300 px-3'
+                  }
                 >
-                  <span className="text-white px-2"> Status:</span>
+                  <span className="text-white px-2"> Friend:</span>
+                  <FontAwesomeIcon icon={['fas', 'check-square']} />
+                </span>
+                <span
+                  data-testid="status"
+                  className={character?.isfamily === 1 ? 'text-green-600' : 'text-gray-300'}
+                >
+                  <span className="text-white px-2"> Family:</span>
                   <FontAwesomeIcon icon={['fas', 'check-square']} />
                 </span>
               </div>
-              <div className="text-center py-2">
-                <p className="text-m text-blue-200 mt-[3px]">Location: {character?.title}</p>
-                {/*<button className=" mt-16 bg-white hover:bg-white-500 text-blue-700 font-semibold hover:text-blue-900 my-4 py-1 px-4 border border-blue-500 hover:border-transparent rounded">*/}
-                {/*  <a href={character?.url} target="_blank" rel="noreferrer">*/}
-                {/*    Visit page*/}
-                {/*  </a>*/}
-                {/*</button>*/}
+              <div className="flex items-center justify-between">
+                <span className="text-m text-blue-200 mt-[3px]">Server: {character?.server}</span>
+                <span className="text-m text-blue-200 mt-[3px]">Secret: {character?.secret}</span>
+                <span className="text-m text-blue-200 mt-[3px]">Farm: {character?.farm}</span>
               </div>
             </div>
           </div>
