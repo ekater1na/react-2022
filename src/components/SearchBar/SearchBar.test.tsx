@@ -4,7 +4,13 @@ import { SearchBar } from './SearchBar';
 import { render, screen } from '@testing-library/react';
 
 describe('SearchBar component', () => {
-  it('focus input', () => {
+  it('renders', () => {
+    render(<SearchBar />);
+    const elem = screen.getByTestId('search-bar');
+    expect(elem).toBeInTheDocument();
+  });
+
+  it('has focus input', () => {
     render(<SearchBar />);
     const input = screen.getByPlaceholderText(/enter/i);
     expect(input).not.toHaveFocus();
@@ -13,16 +19,3 @@ describe('SearchBar component', () => {
   });
 });
 
-describe('LocalStorage', () => {
-  const localStorageMock = {
-    setItem: jest.fn(),
-    getItem: jest.fn(),
-    removeItem: jest.fn(),
-    clear: jest.fn(),
-  };
-  beforeAll(() => {
-    Object.defineProperty(window, 'localStorage', {
-      value: localStorageMock,
-    });
-  });
-});

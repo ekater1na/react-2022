@@ -25,7 +25,7 @@ export function SearchBar() {
   }, [searchValue]);
 
   return (
-    <div className="bg-blue-200 flex flex-col justify-center">
+    <div className="bg-blue-200 flex flex-col justify-center" data-testid="search-bar">
       <div className="relative p-1 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-2">
           <form

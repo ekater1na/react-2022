@@ -41,7 +41,7 @@ export const initialState = {
   resultsPerPage: 10,
   pageNumber: 1,
   totalPagesCount: 0,
-  isLoading: false,
+  isLoading: true,
   error: '',
   photos: [],
   formValues: [],

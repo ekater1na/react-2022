@@ -61,21 +61,21 @@ export function Details() {
           <div className="px-1 pb-4 text-xl">
             <div className="flex items-center justify-between">
               <span
-                data-testid="gender"
+                data-testid="ispublic"
                 className={photo?.ispublic === 1 ? 'text-green-600' : 'text-gray-400/30'}
               >
                 <span className="text-white px-2"> Public:</span>
                 <FontAwesomeIcon icon={['fas', 'check-square']} />
               </span>
               <span
-                data-testid="status"
+                data-testid="isfriend"
                 className={photo?.isfriend === 1 ? 'text-green-600 px-3' : 'text-gray-400/30 px-3'}
               >
                 <span className="text-white px-2"> Friend:</span>
                 <FontAwesomeIcon icon={['fas', 'check-square']} />
               </span>
               <span
-                data-testid="status"
+                data-testid="isfamily"
                 className={photo?.isfamily === 1 ? 'text-green-600' : 'text-gray-400/30'}
               >
                 <span className="text-white px-2"> Family:</span>

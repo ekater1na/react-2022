@@ -65,7 +65,6 @@ describe('PhotoList component', () => {
       </BrowserRouter>
     );
     const elem = screen.getByTestId<HTMLElement>('character-list');
-    screen.debug();
     expect(elem).toBeInTheDocument();
   });
 
