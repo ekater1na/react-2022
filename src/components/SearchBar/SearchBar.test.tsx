@@ -1,11 +1,7 @@
 import React from 'react';
 
-import SearchBar from './SearchBar';
+import { SearchBar } from './SearchBar';
 import { render, screen } from '@testing-library/react';
-
-const onChange = jest.fn();
-const onSubmit = jest.fn();
-const updatePagesNumber = jest.fn();
 
 describe('SearchBar component', () => {
   it('focus input', () => {

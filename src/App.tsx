@@ -11,7 +11,7 @@ import { Details } from './components/Details/Details';
 
 function App() {
   return (
-    <div>
+    <>
       <div className="flex items-center justify-between">
         <Header />
         <Location />
@@ -23,7 +23,7 @@ function App() {
         <Route path="forms" element={<FormPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

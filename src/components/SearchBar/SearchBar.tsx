@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/Context';
 import { ActionType } from '../../context/reducers';
 
-export default function () {
+export function SearchBar() {
   const { state, dispatch, fetchPhotos } = useContext(AppContext);
   const { searchValue, sortOrder, resultsPerPage, pageNumber } = state;
 

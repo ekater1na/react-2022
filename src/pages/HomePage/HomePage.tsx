@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import { PhotoList } from 'components/PhotoList/PhotoList';
 import { Loader } from '../../components/Loader/Loader';
 import { ErrorMessage } from '../../components/Error/Error';
 import { PageOptions } from '../../components/PageOptions/PageOptions';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { AppContext } from '../../context/Context';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
 
 export function HomePage() {
   const { state } = useContext(AppContext);
