@@ -7,6 +7,11 @@ interface FormProps {
   setFormValues: (value: IProduct) => void;
 }
 
+interface inputProps {
+  name: string;
+  width: string;
+}
+
 export default function Form({ setFormValues }: FormProps) {
   const errorMessage = 'Please add data';
 
@@ -27,6 +32,34 @@ export default function Form({ setFormValues }: FormProps) {
     },
   });
 
+  const Input = ({ name, width }: inputProps) => {
+    return (
+      <div className="w-full px-3 mb-6 md:mb-0">
+        <div className={width}>
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor={name}
+          >
+            {name}
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id={name}
+            data-testid={name}
+            placeholder={`Add ${name}`}
+            type="text"
+            {...register(name, { required: true })}
+          />
+          {errors[name] && (
+            <p className="text-red-500 text-xs italic" data-testid={`${name}-error`}>
+              {errorMessage}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   const onSubmit: SubmitHandler<IProduct> = (data: IProduct) => {
     setFormValues({
       ...data,
@@ -46,27 +79,7 @@ export default function Form({ setFormValues }: FormProps) {
     <div className="container mx-auto sm:max-w-2xl my-4">
       <form className="w-full" onSubmit={handleSubmit(onSubmit)} data-testid="form">
         <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="title"
-            >
-              Title
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="title"
-              data-testid="title"
-              placeholder="Add title"
-              type="text"
-              {...register('title', { required: true })}
-            />
-            {errors.title && (
-              <p className="text-red-500 text-xs italic" data-testid="title-error">
-                {errorMessage}
-              </p>
-            )}
-          </div>
+          <Input name="title" width="md:w-1/2" />
 
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -104,23 +117,7 @@ export default function Form({ setFormValues }: FormProps) {
         </div>
 
         <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="description"
-            >
-              Description
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="description"
-              data-testid="description"
-              placeholder="Write description"
-              type="text"
-              {...register('description', { required: true })}
-            />
-            {errors.description && <p className="text-red-500 text-xs italic">{errorMessage}</p>}
-          </div>
+          <Input name="description" width="w-full" />
         </div>
 
         <div className="flex flex-wrap -mx-3">
@@ -166,22 +163,7 @@ export default function Form({ setFormValues }: FormProps) {
         </div>
 
         <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/3 px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="price"
-            >
-              Price
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="price"
-              placeholder="Add price"
-              type="text"
-              {...register('price', { required: true })}
-            />
-            {errors.price && <p className="text-red-500 text-xs italic">{errorMessage}</p>}
-          </div>
+          <Input name="price" width="w-full md:w-1/3 px-3" />
 
           <div className="w-full md:w-3/6 px-3">
             <label
