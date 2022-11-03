@@ -13,7 +13,7 @@ describe('Header component', () => {
         </Routes>
       </BrowserRouter>
     );
-    const elem = screen.getByRole<HTMLInputElement>(/nav/i);
+    const elem = screen.getByTestId<HTMLElement>('header');
     expect(elem).toBeInTheDocument();
   });
 

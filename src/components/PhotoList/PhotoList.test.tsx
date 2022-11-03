@@ -55,8 +55,8 @@ const mockPhotos: IPhoto[] = [
   },
 ];
 
-describe('PhtotList component', () => {
-  test('renders list of cards', () => {
+describe('PhotoList component', () => {
+  test('renders', () => {
     render(
       <BrowserRouter>
         <Routes>
@@ -65,6 +65,7 @@ describe('PhtotList component', () => {
       </BrowserRouter>
     );
     const elem = screen.getByTestId<HTMLElement>('character-list');
+    screen.debug();
     expect(elem).toBeInTheDocument();
   });
 

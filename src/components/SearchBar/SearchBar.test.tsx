@@ -25,13 +25,4 @@ describe('LocalStorage', () => {
       value: localStorageMock,
     });
   });
-
-  it('set localStorage data', () => {
-    const { unmount } = render(<SearchBar />);
-    const input = screen.getByPlaceholderText(/enter/i);
-
-    localStorageMock.setItem('search', 'item');
-    unmount();
-    expect(input).toBeTruthy();
-  });
 });

@@ -76,7 +76,7 @@ export default function Form({ setFormValues }: FormProps) {
       id: moment().toString(),
       image: data.image[0]
         ? URL.createObjectURL(data.image[0])
-        : require(`../../assets/default.jpg`),
+        : require('../../assets/default.jpg'),
     });
     reset();
   };

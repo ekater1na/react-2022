@@ -3,7 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 export function Header() {
   return (
-    <nav className="relative flex flex-wrap items-center justify-center px-2 py-2 bg-blue-400 w-full">
+    <nav
+      className="relative flex flex-wrap items-center justify-center px-2 py-2 bg-blue-400 w-full"
+      data-testid="header"
+    >
       <NavLink data-testid="home" className="px-4 text-2xl text-red-500" to="/">
         Home
       </NavLink>
