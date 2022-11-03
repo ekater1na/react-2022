@@ -2,13 +2,9 @@
 
 Private repository for @ekater1na
 
-[Task 2 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module02)
+[Task 5 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module05)
 
 [Deploy](https://rolling-scopes-school.github.io/ekater1na-REACT2022Q3)
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -23,6 +19,7 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `npm test`
+### `npm test-cov`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.

@@ -7,7 +7,7 @@ export default function () {
   const { state, dispatch, fetchPhotos } = useContext(AppContext);
   const { searchValue, sortOrder, resultsPerPage, pageNumber } = state;
 
-  const [name, setName] = useLocalStorage('name', '');
+  const [name] = useLocalStorage('name', '');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
