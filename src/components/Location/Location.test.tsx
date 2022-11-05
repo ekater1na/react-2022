@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import Location from './Location';
+import { Location } from './Location';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 describe('Location component', () => {

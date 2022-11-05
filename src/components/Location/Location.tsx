@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-const Location = () => {
+export function Location() {
   const location = useLocation();
 
   const pageTitle = location.pathname;
@@ -14,6 +14,4 @@ const Location = () => {
       </p>
     </div>
   );
-};
-
-export default Location;
+}

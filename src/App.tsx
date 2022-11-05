@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { HomePage } from './pages/HomePage/HomePage';
-import Location from './components/Location/Location';
+import { Location } from './components/Location/Location';
 import { Header } from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import { AboutUs } from './pages/AboutUs';
