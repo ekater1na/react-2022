@@ -1,4 +1,4 @@
-import { IPhoto, IProduct } from '../models/models';
+import { IPhoto } from '../models/models';
 import { IInitialStateType } from './Context';
 
 export enum ActionType {
@@ -8,7 +8,7 @@ export enum ActionType {
   SetPageOptions = 'Set_search_options',
   SetCurrentPage = 'Set_current_page',
   ResetPage = 'Reset_page',
-  AddProduct = 'Add_product',
+  // AddFormProduct = 'Add_product',
 }
 
 export type FetchSuccess = {
@@ -45,12 +45,12 @@ export type ResetPage = {
   type: ActionType.ResetPage;
 };
 
-export type AddProduct = {
-  type: ActionType.AddProduct;
-  payload: {
-    product: IProduct;
-  };
-};
+// export type AddFormProduct = {
+//   type: ActionType.AddFormProduct;
+//   payload: {
+//     product: IProduct;
+//   };
+// };
 
 export type Actions =
   | FetchSuccess
@@ -58,8 +58,8 @@ export type Actions =
   | SetSearchValue
   | SetPageOptions
   | SetCurrentPage
-  | ResetPage
-  | AddProduct;
+  | ResetPage;
+// | AddFormProduct;
 
 export const mainReducer = (state: IInitialStateType, action: Actions) => {
   switch (action.type) {
@@ -99,11 +99,11 @@ export const mainReducer = (state: IInitialStateType, action: Actions) => {
         ...state,
         pageNumber: 1,
       };
-    case ActionType.AddProduct:
-      return {
-        ...state,
-        formValues: [...state.formValues, action.payload.product],
-      };
+    // case ActionType.AddFormProduct:
+    //   return {
+    //     ...state,
+    //     formValues: [...state.formValues, action.payload.product],
+    //   };
     default:
       return state;
   }

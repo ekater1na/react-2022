@@ -4,24 +4,38 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { faCalendarDays, faCheckSquare, faPercent } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FormPage } from './FormPage';
+import { store } from '../../redux/store';
+import { Provider } from 'react-redux';
 
 library.add(faCheckSquare, faPercent, faCalendarDays);
 
 describe('FormPage component', () => {
   test('renders', () => {
-    render(<FormPage />);
+    render(
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    );
     const elem = screen.getByTestId<HTMLInputElement>('form-page');
     expect(elem).toBeInTheDocument();
   });
 
   test('renders form', () => {
-    render(<FormPage />);
+    render(
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    );
     const elem = screen.getByTestId<HTMLInputElement>('form');
     expect(elem).toBeInTheDocument();
   });
 
   test('renders list of cards', async () => {
-    render(<FormPage />);
+    render(
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    );
     const onButton = screen.getByTestId<HTMLInputElement>('button-submit');
 
     const title = screen.getByLabelText<HTMLInputElement>(/title/i);

@@ -1,20 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { IProduct } from '../../models/models';
 import FormCard from '../../components/FormCard/FormCard';
 import Form from '../../components/Forms/Form';
-import { AppContext } from '../../context/Context';
-import { ActionType } from '../../context/reducers';
+
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addFormProduct } from '../../features/formSlice';
 
 export function FormPage() {
-  const { state, dispatch } = useContext(AppContext);
-  const formValues = state.formValues;
+  const { formValues } = useAppSelector((state) => state.form);
+  const dispatch = useAppDispatch();
 
-  const setValue = (product: IProduct) => {
-    dispatch({
-      type: ActionType.AddProduct,
-      payload: { product },
-    });
+  const setValue = (user: IProduct) => {
+    dispatch(addFormProduct(user));
   };
 
   return (

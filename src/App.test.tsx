@@ -10,14 +10,18 @@ import {
   faPercent,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
 
 describe('Router', () => {
   test('pages', () => {
     render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     );
 
     const homeLink = screen.getByTestId('home');
