@@ -2,20 +2,12 @@ import React from 'react';
 import { IProduct } from '../../models/models';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import moment from 'moment/moment';
+import { Input } from './Input';
+import { FormErrorMessage } from './FormErrorMessage';
 
 interface FormProps {
   setFormValues: (value: IProduct) => void;
 }
-
-interface inputProps {
-  name: string;
-  className: string;
-}
-
-interface errorProps {
-  name: string;
-}
-
 export default function Form({ setFormValues }: FormProps) {
   const {
     register,
@@ -33,42 +25,6 @@ export default function Form({ setFormValues }: FormProps) {
       notification: false,
     },
   });
-
-  const errorMsg = 'Please add data';
-
-  const ErrorMessage = ({ name }: errorProps) => {
-    return (
-      <>
-        {errors[name] && (
-          <p className="text-red-500 text-xs italic" data-testid={`${name}-error`}>
-            {errorMsg}
-          </p>
-        )}
-      </>
-    );
-  };
-
-  const Input = ({ name, className }: inputProps) => {
-    return (
-      <div className={className}>
-        <label
-          className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          htmlFor={name}
-        >
-          {name}
-        </label>
-        <input
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id={name}
-          data-testid={name}
-          placeholder={`Add ${name}`}
-          type="text"
-          {...register(name, { required: true })}
-        />
-        <ErrorMessage name={name} />
-      </div>
-    );
-  };
 
   const onSubmit: SubmitHandler<IProduct> = (data: IProduct) => {
     setFormValues({
@@ -89,7 +45,12 @@ export default function Form({ setFormValues }: FormProps) {
     <div className="container mx-auto sm:max-w-2xl my-4">
       <form className="w-full" onSubmit={handleSubmit(onSubmit)} data-testid="form">
         <div className="flex flex-wrap -mx-3 mb-6">
-          <Input name="title" className="w-full md:w-1/2 px-3 mb-6 md:mb-0" />
+          <Input
+            name="title"
+            className="w-full md:w-1/2 px-3 mb-6 md:mb-0"
+            register={register}
+            errors={errors.title}
+          />
 
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -121,13 +82,18 @@ export default function Form({ setFormValues }: FormProps) {
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                 </svg>
               </div>
-              <ErrorMessage name="category" />
+              <FormErrorMessage name="category" errors={errors.category} />
             </div>
           </div>
         </div>
 
         <div className="flex flex-wrap -mx-3 mb-6">
-          <Input name="description" className="w-full px-3" />
+          <Input
+            name="description"
+            className="w-full px-3"
+            register={register}
+            errors={errors.description}
+          />
         </div>
 
         <div className="flex flex-wrap -mx-3">
@@ -163,7 +129,7 @@ export default function Form({ setFormValues }: FormProps) {
                 type="Date"
                 {...register('date', { required: true })}
               />
-              <ErrorMessage name="date" />
+              <FormErrorMessage name="date" errors={errors.date} />
 
               <button className="datepicker-toggle-button" data-mdb-toggle="datepicker">
                 <i className="fas fa-calendar datepicker-toggle-icon"></i>
@@ -173,7 +139,12 @@ export default function Form({ setFormValues }: FormProps) {
         </div>
 
         <div className="flex flex-wrap -mx-3 mb-2">
-          <Input name="price" className="w-full md:w-1/3 px-3" />
+          <Input
+            name="price"
+            className="w-full md:w-1/3 px-3"
+            register={register}
+            errors={errors.price}
+          />
 
           <div className="w-full md:w-3/6 px-3">
             <label
@@ -240,6 +211,4 @@ export default function Form({ setFormValues }: FormProps) {
       </form>
     </div>
   );
-
-  // }
 }
