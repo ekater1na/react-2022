@@ -38,11 +38,9 @@ const initialState: InitialState = {
 export const searchSlice = createSlice({
   name: 'search',
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
-      console.log(initialState);
     },
     setPageOptions: (
       state,
@@ -59,21 +57,16 @@ export const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPhotos.pending, (state) => {
-      console.log(this);
       state.isLoading = true;
       state.error = '';
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action) => {
-      console.log(this);
-
       state.isLoading = false;
       state.error = '';
       state.photos = action.payload.photos;
       state.totalPagesCount = action.payload.totalPagesCount;
     });
     builder.addCase(fetchPhotos.rejected, (state) => {
-      console.log(this);
-
       state.isLoading = false;
       state.error = 'Error occurred';
       state.photos = [];

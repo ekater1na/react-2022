@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PhotoList } from 'components/PhotoList/PhotoList';
 import { Loader } from '../../components/Loader/Loader';
 import { ErrorMessage } from '../../components/Error/Error';
 import { PageOptions } from '../../components/PageOptions/PageOptions';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchPhotos } from '../../features/thunks';
 
 export function HomePage() {
-  const { photos, error, isLoading } = useAppSelector((state) => state.search);
+  const { photos, error, isLoading, searchValue, sortOrder, resultsPerPage, pageNumber } =
+    useAppSelector((state) => state.search);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPhotos({ searchValue, sortOrder, resultsPerPage, pageNumber }));
+  }, [sortOrder, resultsPerPage, pageNumber]);
 
   return (
     <div data-testid="home-page">
