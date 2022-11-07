@@ -1,18 +1,9 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
 
 import { PhotoList } from './PhotoList';
-import { render, screen } from '@testing-library/react';
-import {
-  faCalendarDays,
-  faCheckSquare,
-  faPercent,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { IPhoto } from '../../models/models';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-library.add(faCheckSquare, faPercent, faCalendarDays, faUser);
 
 const mockPhotos: IPhoto[] = [
   {

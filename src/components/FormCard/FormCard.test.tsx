@@ -2,15 +2,10 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import FormCard from './FormCard';
-import {
-  faCalendarDays,
-  faPlusSquare,
-  faCheckSquare,
-  faPercent,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare, faPercent } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { IProduct } from '../../models/models';
-library.add(faCheckSquare, faPlusSquare, faPercent, faCalendarDays);
+library.add(faCheckSquare, faPercent);
 
 const mockProduct: IProduct = {
   id: '1',

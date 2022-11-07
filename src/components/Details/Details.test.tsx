@@ -1,19 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Details } from './Details';
-import { faCheckSquare, faPlusSquare, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-library.add(faCheckSquare, faPlusSquare, faUser);
+import { store } from '../../redux/store';
+import { Provider } from 'react-redux';
+library.add(faCheckSquare);
 
 describe('Details component', () => {
   test('renders details', () => {
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Details />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Details />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     );
 
     const elem = screen.getByTestId<HTMLInputElement>('details');
@@ -22,11 +26,13 @@ describe('Details component', () => {
 
   test('renders correct icons', () => {
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Details />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<Details />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     );
     const ispublic = screen.getByTestId<HTMLInputElement>('ispublic');
     expect(ispublic).toHaveClass('text-gray-400/30');

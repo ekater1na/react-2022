@@ -3,15 +3,10 @@ import { render, screen } from '@testing-library/react';
 import { PhotoItem } from './PhotoItem';
 import { IPhoto } from '../../models/models';
 
-import {
-  faCalendarDays,
-  faCheckSquare,
-  faPlusSquare,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-library.add(faCheckSquare, faPlusSquare, faUser, faCalendarDays);
+library.add(faCheckSquare);
 
 const mockPhoto: IPhoto = {
   datetaken: '2011-06-04 20:27:41',

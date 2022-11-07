@@ -4,25 +4,27 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { HomePage } from './HomePage';
 import userEvent from '@testing-library/user-event';
 
-import {
-  faCalendarDays,
-  faCheckSquare,
-  faPlusSquare,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-library.add(faCheckSquare, faPlusSquare, faUser, faCalendarDays);
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 describe('HomePage component', () => {
   it('renders', () => {
-    render(<HomePage />);
+    render(
+      <Provider store={store}>
+        <HomePage />
+      </Provider>
+    );
     const elem = screen.getByTestId('home-page');
     expect(elem).toBeInTheDocument();
   });
 
   it('load data', async () => {
-    render(<HomePage />);
+    render(
+      <Provider store={store}>
+        <HomePage />
+      </Provider>
+    );
     const input = screen.getByPlaceholderText(/enter/i);
     userEvent.type(input, 'rick');
     const btn = screen.getByTestId('search-btn');
@@ -33,11 +35,13 @@ describe('HomePage component', () => {
 
   it('fetches data', async () => {
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<HomePage />}></Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="*" element={<HomePage />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     );
     const input = screen.getByPlaceholderText(/enter/i);
     userEvent.type(input, '');

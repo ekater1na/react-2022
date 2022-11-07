@@ -22,7 +22,7 @@ describe('Form reducer', () => {
     expect(formReducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });
 
-  it('should handle increment', () => {
+  it('should add product', () => {
     const actual = formReducer(initialState, addFormProduct(mockProduct));
     expect(actual.formValues).toEqual([
       {
