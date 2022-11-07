@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { PhotoList } from 'components/PhotoList/PhotoList';
 import { Loader } from '../../components/Loader/Loader';
 import { ErrorMessage } from '../../components/Error/Error';
 import { PageOptions } from '../../components/PageOptions/PageOptions';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { AppContext } from '../../context/Context';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { useAppSelector } from '../../redux/hooks';
 
 export function HomePage() {
-  const { state } = useContext(AppContext);
-  const { photos, error, isLoading } = state;
+  const { photos, error, isLoading } = useAppSelector((state) => state.search);
 
   return (
     <div data-testid="home-page">

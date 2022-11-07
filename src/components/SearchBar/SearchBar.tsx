@@ -1,22 +1,26 @@
-import React, { useContext, useEffect } from 'react';
-import { AppContext } from '../../context/Context';
-import { ActionType } from '../../context/reducers';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchPhotos } from '../../features/thunks';
+import { setCurrentPage, setSearchValue } from '../../features/searchSlice';
 
 export function SearchBar() {
-  const { state, dispatch, fetchPhotos } = useContext(AppContext);
-  const { searchValue, sortOrder, resultsPerPage, pageNumber } = state;
+  const { searchValue, sortOrder, resultsPerPage, pageNumber } = useAppSelector(
+    (state) => state.search
+  );
+
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
-    dispatch({ type: ActionType.SetSearchValue, payload: value });
+    dispatch(setSearchValue(value));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (searchValue) {
-      fetchPhotos(searchValue, sortOrder, resultsPerPage, pageNumber);
-      dispatch({ type: ActionType.SetCurrentPage, payload: 1 });
-      dispatch({ type: ActionType.ResetPage });
+      dispatch(fetchPhotos({ searchValue, sortOrder, resultsPerPage, pageNumber }));
+      dispatch(setCurrentPage(1));
+      // dispatch(resetPage());
     }
   };
 

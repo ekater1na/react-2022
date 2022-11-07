@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AppContext } from '../../context/Context';
+import { useAppSelector } from '../../redux/hooks';
 
 export function Details() {
-  const { state } = useContext(AppContext);
-  const { photos } = state;
+  const { photos } = useAppSelector((state) => state.search);
 
   const { id } = useParams();
 

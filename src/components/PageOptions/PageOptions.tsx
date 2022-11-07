@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/Context';
-import { ActionType } from '../../context/reducers';
+import React from 'react';
+
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setPageOptions } from '../../features/searchSlice';
 
 export function PageOptions() {
-  const { state, dispatch } = useContext(AppContext);
-  const { sortOrder, resultsPerPage, totalPagesCount } = state;
+  const { sortOrder, resultsPerPage, totalPagesCount } = useAppSelector((state) => state.search);
+  const dispatch = useAppDispatch();
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = event.target;
-    dispatch({ type: ActionType.SetPageOptions, payload: { name, value } });
+    dispatch(setPageOptions({ name, value }));
   };
 
   return (

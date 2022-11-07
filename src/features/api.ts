@@ -17,7 +17,6 @@ export async function api(method: string, params: SearchPhotosParams) {
     url.search = new URLSearchParams(flickrParams).toString();
 
     const response = await fetch(url.href);
-    console.log(url.href);
 
     return await response.json();
   } catch (error) {

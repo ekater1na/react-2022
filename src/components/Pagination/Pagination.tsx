@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { AppContext } from '../../context/Context';
-import { ActionType } from '../../context/reducers';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { setCurrentPage } from '../../features/searchSlice';
 
 interface PageChange {
   selected: number;
 }
 
 export function Pagination() {
-  const { state, dispatch } = useContext(AppContext);
-  const { pageNumber, totalPagesCount } = state;
+  const { pageNumber, totalPagesCount } = useAppSelector((state) => state.search);
+  const dispatch = useAppDispatch();
 
   const pageChange = (data: PageChange) => {
-    dispatch({ type: ActionType.SetCurrentPage, payload: data.selected + 1 });
+    dispatch(setCurrentPage(data.selected + 1));
   };
 
   const [width, setWidth] = useState(window.innerWidth);
