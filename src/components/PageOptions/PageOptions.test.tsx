@@ -5,7 +5,6 @@ import { store } from '../../redux/store';
 import { Provider } from 'react-redux';
 
 describe('Page options component', () => {
-
   test('renders ', () => {
     render(
       <Provider store={store}>

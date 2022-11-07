@@ -2,22 +2,34 @@
 
 Private repository for @ekater1na
 [Task 1 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module01)
+
 [Task 1 deploy](https://react2022q3-components.netlify.app/)
 
+
 [Task 2 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module02)
+
 [Task 2 deploy](https://react2022q3-forms.netlify.app)
 
+
 [Task 3 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module03)
+
 [Task 3 deploy](https://react2022q3-api.netlify.app/)
 
+
 [Task 4 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module04)
+
 [Task 4 deploy](https://react2022q3-hooks.netlify.app/)
 
+
 [Task 5 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module05)
+
 [Task 5 deploy](https://rolling-scopes-school.github.io/ekater1na-REACT2022Q3)
 
+
 [Task 6 description](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules/module06)
+
 [Task 6 deploy](https://rolling-scopes-school.github.io/ekater1na-REACT2022Q3)
+
 
 ## Available Scripts
 
@@ -32,6 +44,7 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `npm test`
+
 ### `npm test-cov`
 
 Launches the test runner in the interactive watch mode.\
