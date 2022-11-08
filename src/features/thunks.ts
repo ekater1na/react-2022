@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { SearchPhotosParams } from '../models/api';
-import { IPhoto } from '../models/models';
 import { api } from './api';
 
 type SearchOptions = {
@@ -25,7 +24,7 @@ export const fetchPhotos = createAsyncThunk(
     try {
       const response = await api('photos.search', params);
       const totalPagesCount = response.photos.pages;
-      const photos = response.photos.photo.filter((item: IPhoto) => item.url_n);
+      const photos = response.photos.photo;
       return { photos, totalPagesCount };
     } catch (err) {
       return rejectWithValue((err as Error).message);

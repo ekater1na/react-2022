@@ -20,7 +20,6 @@ export function SearchBar() {
     if (searchValue) {
       dispatch(fetchPhotos({ searchValue, sortOrder, resultsPerPage, pageNumber }));
       dispatch(setCurrentPage(1));
-      // dispatch(resetPage());
     }
   };
 
