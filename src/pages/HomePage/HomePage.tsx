@@ -15,7 +15,7 @@ export function HomePage() {
 
   useEffect(() => {
     dispatch(fetchPhotos({ searchValue, sortOrder, resultsPerPage, pageNumber }));
-  }, [sortOrder, resultsPerPage, pageNumber]);
+  }, [dispatch, searchValue, sortOrder, resultsPerPage, pageNumber]);
 
   return (
     <div data-testid="home-page">
