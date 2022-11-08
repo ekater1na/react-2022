@@ -29,7 +29,7 @@ const initialState: InitialState = {
   sortOrder: SortType.Relevance,
   resultsPerPage: 10,
   pageNumber: 1,
-  totalPagesCount: 0,
+  totalPagesCount: 1,
   isLoading: true,
   error: '',
   photos: [],
